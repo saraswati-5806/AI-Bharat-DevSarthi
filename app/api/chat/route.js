@@ -1,53 +1,62 @@
-import { BedrockRuntimeClient, ConverseCommand } from "@aws-sdk/client-bedrock-runtime";
-import { bedrockClient } from "@/lib/bedrock-client";
+import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
+import { NextResponse } from "next/server";
 
-// Locale to language name mapping
-const LOCALE_TO_LANGUAGE = {
-  'en': 'English',
-  'hi': 'Hindi',
-  'ta': 'Tamil',
-  'te': 'Telugu',
-  'bn': 'Bengali',
-  'mr': 'Marathi'
-}
+// 🏆 Initialize client outside the handler for better performance
+const client = new BedrockRuntimeClient({
+  region: "us-east-1", 
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+});
 
+// ✅ MUST BE A NAMED EXPORT 'POST' - NO 'export default'
 export async function POST(req) {
   try {
-    const { messages, language = "English", locale } = await req.json();
-    
-    // If locale is provided, use it to determine language
-    const responseLanguage = locale ? (LOCALE_TO_LANGUAGE[locale] || 'English') : language;
+    const { messages, context } = await req.json();
 
-    const SYSTEM_PROMPT = `You are DevSathi, an AI tutor for BSc IT students.
-    
-    STRICT RULES FOR RESPONSES:
-    1. ANSWER FIRST: Give the direct answer/solution in the very first sentence.
-    2. BREVITY: Use small paragraphs (max 2-3 sentences).
-    3. LANGUAGE: Respond ONLY in ${responseLanguage}.
-    4. TONE: Professional but simple. No long intros like "I hope this helps" or "Here is your answer."
-    5. FORMATTING: Use bold text for key terms and bullet points if explaining more than two items.
-    
-    If a student asks a coding question, provide the code block immediately with minimal explanation.`;
+    // Clean sequence for Bedrock: User -> Assistant -> User
+    let formattedMessages = messages
+      .map(m => ({
+        role: m.role === 'assistant' ? 'assistant' : 'user',
+        content: [{ text: m.content }]
+      }))
+      .filter((m, i) => !(i === 0 && m.role === 'assistant'));
 
-    const command = new ConverseCommand({
-      modelId: "us.amazon.nova-2-lite-v1:0", 
-      messages: messages,
-      system: [{ text: SYSTEM_PROMPT }], 
+    const finalMessages = formattedMessages.filter((m, i) => {
+      if (i === 0) return true;
+      return m.role !== formattedMessages[i - 1].role;
+    });
+
+    const payload = {
       inferenceConfig: { 
-        maxTokens: 500, // Reduced tokens to force the AI to be concise
-        temperature: 0.5 // Lower temperature for more direct, less "chatty" answers
-      }
+        max_new_tokens: 1000, 
+        temperature: 0.2,
+        top_p: 0.9
+      },
+      messages: finalMessages,
+      system: [{ text: `You are DevSathi, a Hinglish academic tutor. Context: ${context || "General"}` }]
+    };
+
+    const command = new InvokeModelCommand({
+      modelId: "amazon.nova-lite-v1:0",
+      contentType: "application/json",
+      accept: "application/json",
+      body: JSON.stringify(payload),
     });
 
-    const response = await bedrockClient.send(command);
-    const replyText = response.output?.message?.content?.[0]?.text;
-
-    return new Response(JSON.stringify({ text: replyText }), {
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await client.send(command);
+    const result = JSON.parse(new TextDecoder().decode(response.body));
+    
+    const responseText = result.output.message.content[0].text;
+    
+    return NextResponse.json({ text: responseText });
 
   } catch (error) {
-    console.error("❌ BACKEND ERROR:", error.message);
-    return new Response(JSON.stringify({ message: error.message }), { status: 500 });
+    console.error("🚨 BEDROCK CRITICAL ERROR:", error);
+    return NextResponse.json({ 
+      error: "Bedrock Config Failed", 
+      details: error.message 
+    }, { status: 500 });
   }
 }

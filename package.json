@@ -20,7 +20,11 @@
     "@tailwindcss/postcss": "^4.2.1",
     "bcryptjs": "^3.0.3",
     "lucide-react": "^0.575.0",
-    "next-intl": "^4.8.3"
+    "next-intl": "^4.8.3",
+    "prismjs": "^1.30.0",
+    "pyodide": "^0.29.3",
+    "react-markdown": "^10.1.0",
+    "react-simple-code-editor": "^0.14.1"
   },
   "devDependencies": {
     "@types/node": "25.3.3",
