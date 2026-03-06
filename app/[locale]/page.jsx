@@ -13,61 +13,61 @@ import {
 } from "lucide-react";
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   TRANSLATIONS DICTIONARY
+   TRANSLATIONS DICTIONARY (Updated with 22+ Languages & 3-Panel Story)
    ═══════════════════════════════════════════════════════════════════════════ */
 const translations = {
   en: {
-    navHome: "Home", navFeatures: "Features", navVault: "The Vault", navPricing: "Pricing", navAbout: "About",
-    heroTitle: "Your AI Coding Companion,",
-    heroTitleGrad: "in Your Language.",
-    heroSub: "Experience the all-in-one workspace for Bharat, Powered by Amazon Bedrock.",
-    getStarted: "Get Started (Demo)", signIn: "Sign In", 
+    navHome: "Home", navFeatures: "Tech Stack", navVault: "The Vault", navPricing: "Cost Strategy", navAbout: "About",
+    heroTitle: "Empowering Bharat's Students,",
+    heroTitleGrad: "in 22+ Languages.",
+    heroSub: "The all-in-one vernacular workspace powered by Amazon Bedrock. Optimized for Mumbai University students.",
+    getStarted: "Get Started (Demo Access)", signIn: "Sign In", 
     journeyTitle: "The AWS Journey",
-    journeySub: "5 Managed Services. 1 Seamless Workspace.",
-    adaptiveTitle: "Adaptive 5-Panel Mastery",
-    adaptiveDesc: "Stop switching between 10 browser tabs. DevSathi provides a fluid environment that morphs to your workflow. Whether you're debugging C++ code, researching Mumbai University PDFs, or generating study notes, our 5-panel system keeps your focus sharp.",
-    vaultTitle: "The Vault: Your Academic Memory",
-    vaultDesc: "Standard AI forgets your files instantly. The Vault, powered by Amazon S3, creates a permanent, secure cloud library for your syllabus and textbooks. Our RAG system allows Sathi to provide tutoring based specifically on YOUR materials.",
+    journeySub: "Built for Bharat-scale with Serverless Efficiency.",
+    adaptiveTitle: "Adaptive 3-Panel Mastery",
+    adaptiveDesc: "Stop switching tabs. Our fluid 3-panel environment—Context, Reasoning, and Vault—breaks the language barrier. Analyze MU PDFs or debug code with AI tutoring in Marathi, Hindi, and 22+ official Indian languages.",
+    vaultTitle: "The Vault: Academic RAG",
+    vaultDesc: "Powered by Amazon S3 and Bedrock, the Vault turns static syllabus PDFs into interactive personal tutors. Real-time tutoring that understands your mother tongue.",
     aboutTitle: "Our Mission for Bharat",
-    aboutDesc: "DevSathi bridges the digital divide for students across Bharat. By combining AWS Generative AI with native regional language logic, we are democratizing technical education for every student.",
-    pricingTitle: "Simple, Bharat-Scale Pricing",
-    pricingSub: "Free for students, powerful for pros.",
+    aboutDesc: "Democratizing technical education by combining AWS Generative AI with regional language logic for every student in India.",
+    pricingTitle: "Zero-Entry Strategy",
+    pricingSub: "AWS-First Implementation for Maximum Cost Efficiency.",
     footerTag: "Empowering the next generation of IT professionals in Bharat.",
     resources: "Resources", demoVideo: "Demo Video", architecture: "AWS Architecture", techDocs: "Technical Docs"
   },
   mr: {
-    navHome: "मुख्यपृष्ठ", navFeatures: "वैशिष्ट्ये", navVault: "व्हॉल्ट", navPricing: "किंमत", navAbout: "बद्दल",
-    heroTitle: "तुमचा AI कोडिंग सोबती,",
-    heroTitleGrad: "तुमच्या भाषेत.",
-    heroSub: "भारतासाठी डिझाइन केलेले अष्टपैलू वर्कस्पेस, Amazon Bedrock द्वारे समर्थित.",
+    navHome: "मुख्यपृष्ठ", navFeatures: "टेक स्टॅक", navVault: "व्हॉल्ट", navPricing: "किंमत धोरण", navAbout: "बद्दल",
+    heroTitle: "भारतातील विद्यार्थ्यांना सक्षम करणे,",
+    heroTitleGrad: "२२+ भाषांमध्ये.",
+    heroSub: "Amazon Bedrock द्वारे समर्थित पहिले प्रादेशिक वर्कस्पेस. मुंबई विद्यापीठाच्या विद्यार्थ्यांसाठी विशेषतः डिझाइन केलेले.",
     getStarted: "सुरुवात करा (डेमो)", signIn: "प्रवेश करा", 
-    adaptiveTitle: "अडॅप्टिव्ह ५-पॅनेल मास्टरी",
-    adaptiveDesc: "१० टॅबमध्ये फिरणे थांबवा. देवसाथी एक प्रवाही वर्कस्पेस प्रदान करते. तुम्ही सी++ कोड डीबग करणे असो किंवा मुंबई विद्यापीठाच्या पीडीएफ शोधणे असो, आमचे ५-पॅनेल सिस्टम तुमचे लक्ष विचलित होऊ देत नाही.",
-    vaultTitle: "व्हॉल्ट: तुमची शैक्षणिक मेमरी",
-    vaultDesc: "अॅमेझॉन एस ३ द्वारे समर्थित व्हॉल्ट तुमच्या अभ्यासक्रमासाठी आणि नोट्ससाठी कायमस्वरूपी सुरक्षित क्लाउड लायब्ररी तयार करते, ज्यामुळे साथी तुमच्या साहित्यावर आधारित ट्युटरिंग देऊ शकते.",
+    adaptiveTitle: "अडॅप्टिव्ह ३-पॅनेल मास्टरी",
+    adaptiveDesc: "टॅब बदलणे थांबवा. आमचे ३-पॅनेल वातावरण—Context, Reasoning, आणि Vault—भाषेचा अडथळा दूर करते. मराठी, हिंदी आणि २२+ भारतीय भाषांमध्ये मार्गदर्शन मिळवा.",
+    vaultTitle: "व्हॉल्ट: शैक्षणिक RAG",
+    vaultDesc: "S3 आणि Bedrock द्वारे समर्थित, हा व्हॉल्ट तुमच्या सिलॅबसला एका वैयक्तिक ट्यूटरमध्ये रूपांतरित करतो जो तुमच्या भाषेत बोलतो.",
     aboutTitle: "भारतासाठी आमचे ध्येय",
-    aboutDesc: "प्रादेशिक भाषा समर्थनासह AWS GenAI ला जोडून, आम्ही भारतातील प्रत्येक विद्यार्थ्यासाठी तांत्रिक शिक्षण खऱ्या अर्थाने सुलभ आणि लोकशाहीत करत आहोत.",
-    pricingTitle: "सोपी आणि परवडणारी किंमत",
-    pricingSub: "विद्यार्थ्यांसाठी विनामूल्य, प्रो साठी शक्तिशाली.",
+    aboutDesc: "प्रादेशिक भाषा समर्थनासह AWS GenAI ला जोडून, आम्ही भारतातील प्रत्येक विद्यार्थ्यासाठी तांत्रिक शिक्षण सुलभ करत आहोत.",
+    pricingTitle: "झिरो-एंट्री स्ट्रॅटेजी",
+    pricingSub: "जास्तीत जास्त खर्च कार्यक्षमतेसाठी AWS-First अंमलबजावणी.",
     footerTag: "भारतातील आयटी व्यावसायिकांच्या पुढच्या पिढीला सक्षम करणे.",
-    resources: "संसाधने", demoVideo: "डेमो व्हिडिओ", architecture: "आर्किटेक्चर", techDocs: "तांत्रिक दस्तऐवज"
+    resources: "संसाधने", demoVideo: "डेमो व्हिडिओ", architecture: "AWS आर्किटेक्चर", techDocs: "तांत्रिक दस्तऐवज"
   },
   hi: {
-    navHome: "होम", navFeatures: "विशेषताएं", navVault: "वॉल्ट", navPricing: "कीमत", navAbout: "परिचय",
-    heroTitle: "आपका AI कोडिंग साथी,",
-    heroTitleGrad: "आपका अपनी भाषा में।",
-    heroSub: "भारत के लिए ऑल-इन-वन वर्कस्पेस, Amazon Bedrock द्वारा संचालित।",
+    navHome: "होम", navFeatures: "टेक स्टैक", navVault: "वॉल्ट", navPricing: "लागत रणनीति", navAbout: "परिचय",
+    heroTitle: "भारत के छात्रों को सशक्त बनाना,",
+    heroTitleGrad: "22+ भाषाओं में।",
+    heroSub: "Amazon Bedrock द्वारा संचालित ऑल-इन-वन क्षेत्रीय वर्कस्पेस। मुंबई विश्वविद्यालय के छात्रों के लिए विशेष रूप से निर्मित।",
     getStarted: "शुरू करें (डेमो)", signIn: "साइन इन करें", 
-    adaptiveTitle: "अडॅप्टिव्ह 5-पैनल मास्टरी",
-    adaptiveDesc: "10 ब्राउज़र टैब के बीच स्विच करना बंद करें। देवसाथी एक सहज वातावरण प्रदान करता है। चाहे आप C++ कोड डीबग कर रहे हों या मुंबई विश्वविद्यालय की पीडीएफ पर शोध कर रहे हों, हमारा 5-पैनल सिस्टम आपका ध्यान केंद्रित रखता है।",
-    vaultTitle: "वॉल्ट: आपकी शैक्षणिक मेमोरी",
-    vaultDesc: "अमेज़ॅन एस 3 द्वारा संचालित वॉल्ट आपके सिलेबस और नोट्स के लिए एक सुरक्षित क्लाउड लाइब्रेरी बनाता है, जिससे साथी विशेष रूप से आपकी सामग्री के आधार पर ट्यूशन दे सकता है।",
+    adaptiveTitle: "अडॅप्टिव्ह 3-पैनल मास्टरी",
+    adaptiveDesc: "टैब बदलना बंद करें। हमारा 3-पैनल वातावरण—Context, Reasoning, और Vault—भाषा की बाधा को तोड़ता है। मराठी, हिंदी और 22+ भारतीय भाषाओं में ट्यूशन प्राप्त करें।",
+    vaultTitle: "वॉल्ट: शैक्षणिक RAG",
+    vaultDesc: "S3 और Bedrock द्वारा संचालित, यह वॉल्ट आपके सिलेबस को एक व्यक्तिगत ट्यूटर में बदल देता है जो आपकी अपनी भाषा समझता है।",
     aboutTitle: "भारत के लिए हमारा लक्ष्य",
     aboutDesc: "क्षेत्रीय भाषा समर्थन के साथ AWS GenAI को जोड़कर, हम भारत के हर छात्र के लिए तकनीकी शिक्षा का लोकतंत्रीकरण कर रहे हैं।",
-    pricingTitle: "सरल और किफायती दाम",
-    pricingSub: "छात्रों के लिए मुफ्त, प्रो के लिए शक्तिशाली।",
+    pricingTitle: "जीरो-एंट्री रणनीति",
+    pricingSub: "अधिकतम लागत दक्षता के लिए AWS-First कार्यान्वयन।",
     footerTag: "भारत के आईटी पेशेवरों की अगली पीढ़ी को सशक्त बनाना।",
-    resources: "संसाधन", demoVideo: "डेमो वीडियो", architecture: "आर्किटेक्चर", techDocs: "तकनीकी दस्तावेज़"
+    resources: "संसाधन", demoVideo: "डेमो वीडियो", architecture: "AWS आर्किटेक्चर", techDocs: "तकनीकी दस्तावेज़"
   }
 };
 
@@ -177,71 +177,66 @@ export default function HomePage() {
         {/* 1. HERO SECTION */}
         <section id="hero" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "140px 24px 80px" }}>
           <div style={{ textAlign: "center", maxWidth: 1100 }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 16px", background: C.gradSoft, borderRadius: 99, color: C.blue, fontSize: 12, fontWeight: 700, marginBottom: 24 }}><Sparkles size={14} /> THE AI STUDENT REVOLUTION</div>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 16px", background: C.gradSoft, borderRadius: 99, color: C.blue, fontSize: 12, fontWeight: 700, marginBottom: 24 }}><Sparkles size={14} /> MU HACKATHON 2026</div>
             <h1 style={{ fontSize: "clamp(44px, 8vw, 76px)", fontWeight: 900, lineHeight: 1.1, marginBottom: 24 }}>{t.heroTitle} <br /><span style={{ background: C.grad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{t.heroTitleGrad}</span></h1>
             <p style={{ fontSize: 20, opacity: 0.7, maxWidth: 650, margin: "0 auto 48px" }}>{t.heroSub}</p>
             
-           {/* 🎯 BYPASS BUTTON: DIRECT TO DASHBOARD */}
-<button 
-  onClick={() => {
-    // 1. Set the auth flags
-    localStorage.setItem("user_authenticated", "true"); 
-    localStorage.setItem("demo_mode", "true");
-    
-    // 2. ⚡ ADD THIS: Provide a mock user object so the Dashboard doesn't crash
-    const demoUser = {
-      name: "Priya",
-      email: "abc@aws.com",
-      university: "Mumbai University",
-      course: "Computer Engineering",
-      isDemo: true
-    };
-    localStorage.setItem("devSathiUser", JSON.stringify(demoUser));
-    
-    // 3. Navigate
-    router.push(`/${locale}/dashboard`);
-  }} 
-  className="ds-btn" 
-  style={{ padding: "18px 48px", fontSize: 18, marginBottom: 80 }}
->
-  {t.getStarted} <ChevronRight size={22} />
-</button>
+            <button 
+              onClick={() => {
+                localStorage.setItem("user_authenticated", "true"); 
+                localStorage.setItem("demo_mode", "true");
+                const demoUser = {
+                  name: "Priya",
+                  email: "judge@mu.edu",
+                  university: "Mumbai University",
+                  course: "Computer Engineering",
+                  isDemo: true
+                };
+                localStorage.setItem("devSathiUser", JSON.stringify(demoUser));
+                router.push(`/${locale}/dashboard`);
+              }} 
+              className="ds-btn" 
+              style={{ padding: "18px 48px", fontSize: 18, marginBottom: 80 }}
+            >
+              {t.getStarted} <ChevronRight size={22} />
+            </button>
             
+            {/* FEATURE HIGHLIGHT: 3-PANEL */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 60, alignItems: "center", textAlign: "left", background: isDarkMode ? "#0f172a" : "#f8fafc", padding: 40, borderRadius: 32, border: `1px solid ${C.border}` }}>
                <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: `1px solid ${C.border}`, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}>
-                  <div style={{ height: 350, background: C.bg0, display: "flex", flexWrap: "wrap", padding: 10, gap: 10 }}>
+                  <div style={{ height: 300, background: C.bg0, display: "flex", padding: 10, gap: 10 }}>
                      <div style={{ flex: 1, background: "#1e293b", borderRadius: 8 }}></div>
-                     <div style={{ flex: 2, background: C.grad, borderRadius: 8, opacity: 0.2 }}></div>
-                     <div style={{ width: "100%", height: "40%", background: "#1e293b", borderRadius: 8 }}></div>
+                     <div style={{ flex: 1.5, background: C.grad, borderRadius: 8, opacity: 0.3 }}></div>
+                     <div style={{ flex: 1, background: "#1e293b", borderRadius: 8 }}></div>
                   </div>
                   <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.4)", backdropFilter: "blur(4px)" }}>
-                     <Layers size={48} color="white" />
+                     <Columns3 size={48} color="white" />
                   </div>
                </div>
                <div>
                   <h3 style={{ fontSize: 32, fontWeight: 800, marginBottom: 20 }}>{t.adaptiveTitle}</h3>
                   <p style={{ fontSize: 17, opacity: 0.7, lineHeight: 1.8 }}>{t.adaptiveDesc}</p>
                   <div style={{ display: "flex", gap: 16, marginTop: 24 }}>
-                     <Terminal size={20} color={C.blue}/> <BookOpen size={20} color={C.purple}/> <FileText size={20} color="#0ea5e9"/>
+                     <Terminal size={20} color={C.blue}/> <BookOpen size={20} color={C.purple}/> <Languages size={20} color="#0ea5e9"/>
                   </div>
                </div>
             </div>
           </div>
         </section>
 
-        {/* 2. AWS JOURNEY */}
+        {/* 2. THE AWS JOURNEY (UPDATED) */}
         <section id="features" style={{ padding: "100px 24px", background: isDarkMode ? C.bg1 : "#f1f5f9" }}>
           <div style={{ maxWidth: 1080, margin: "0 auto" }}>
             <div style={{ textAlign: "center", marginBottom: 64 }}><h2 style={{ fontSize: 44, fontWeight: 900 }}>{t.journeyTitle}</h2><p style={{ fontSize: 18, opacity: 0.6 }}>{t.journeySub}</p></div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))", gap: 24 }}>
               {[
-                { title: "Amplify", desc: "Identity", icon: <ShieldCheck color={C.blue} /> },
-                { title: "Bedrock", desc: "GenAI Brain", icon: <Cpu color={C.purple} /> },
-                { title: "S3", desc: "Secure Vault", icon: <Cloud color="#0ea5e9" /> },
-                { title: "DynamoDB", desc: "Smart Progress", icon: <Database color="#f43f5e" /> },
-                { title: "UI Engine", desc: "5-Panel Mastery", icon: <LayoutDashboard color="#10b981" /> }
+                { title: "Amplify", desc: "Identity & Serverless Hosting", icon: <ShieldCheck color={C.blue} /> },
+                { title: "Bedrock Nova", desc: "Multilingual Brain (22+ Lng)", icon: <Cpu color={C.purple} /> },
+                { title: "S3 + RAG", desc: "MU Syllabus Memory", icon: <Cloud color="#0ea5e9" /> },
+                { title: "DynamoDB", desc: "Zero-Latency Progress", icon: <Database color="#f43f5e" /> },
+                { title: "UI Engine", desc: "3-Panel Focus", icon: <LayoutDashboard color="#10b981" /> }
               ].map((step, i) => (
-                <div key={i} className="aws-card" style={{ padding: 32, background: isDarkMode ? C.bg2 : "white", borderRadius: 24, textAlign: "center", border: `1px solid ${C.border}` }}>
+                <div key={i} className="aws-card" style={{ padding: 32, background: isDarkMode ? C.bg2 : "white", borderRadius: 24, textAlign: "center", border: `1px solid ${C.border}`, transition: "0.3s" }}>
                   <div style={{ marginBottom: 20, display: "flex", justifyContent: "center" }}>{step.icon}</div>
                   <div style={{ fontWeight: 800, fontSize: 18, marginBottom: 8 }}>{step.title}</div>
                   <div style={{ fontSize: 13, opacity: 0.6 }}>{step.desc}</div>
@@ -256,7 +251,7 @@ export default function HomePage() {
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: 80, alignItems: "center" }}>
                <div>
-                  <div style={{ background: C.gradSoft, padding: "8px 16px", borderRadius: 8, display: "inline-block", color: C.blue, fontWeight: 700, fontSize: 12, marginBottom: 20 }}>RELIABLE STORAGE</div>
+                  <div style={{ background: C.gradSoft, padding: "8px 16px", borderRadius: 8, display: "inline-block", color: C.blue, fontWeight: 700, fontSize: 12, marginBottom: 20 }}>VERNACULAR MEMORY</div>
                   <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 24, lineHeight: 1.2 }}>{t.vaultTitle}</h2>
                   <p style={{ fontSize: 18, opacity: 0.7, lineHeight: 1.8 }}>{t.vaultDesc}</p>
                </div>
@@ -265,32 +260,29 @@ export default function HomePage() {
                      <div style={{ width: 120, height: 120, borderRadius: 30, background: C.grad, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px", boxShadow: "0 20px 40px rgba(99,102,241,0.3)" }}>
                         <HardDrive size={50} color="white" />
                      </div>
-                     <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: 2, opacity: 0.5 }}>ENCRYPTED S3 BUCKET</div>
+                     <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: 2, opacity: 0.5 }}>AMAZON S3 SYLLABUS VAULT</div>
                   </div>
-                  <div style={{ position: "absolute", top: 40, right: 40 }}><Share2 color={C.blue} opacity={0.3}/></div>
                </div>
             </div>
           </div>
         </section>
 
-        {/* 4. PRICING */}
+        {/* 4. COST STRATEGY (PDF UPDATED) */}
         <section id="pricing" style={{ padding: "100px 24px", background: isDarkMode ? C.bg1 : "#f8fafc" }}>
           <div style={{ maxWidth: 1080, margin: "0 auto" }}>
              <div style={{ textAlign: "center", marginBottom: 64 }}><h2 style={{ fontSize: 44, fontWeight: 900 }}>{t.pricingTitle}</h2><p style={{ opacity: 0.6 }}>{t.pricingSub}</p></div>
              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 32 }}>
                 {[
-                  { name: "Sathi Starter", price: "₹0", features: ["1GB S3 Vault", "Standard Bedrock AI", "3-Panel Layout", "Community Support"] },
-                  { name: "Sathi Pro", price: "₹199", features: ["10GB S3 Vault", "Priority Bedrock Nova", "5-Panel Mastery", "Syllabus RAG Sync", "No Language Limits"], accent: true },
-                  { name: "Institutional", price: "Custom", features: ["Bulk Student Licenses", "Admin Dashboard", "Private S3 Buckets", "Custom MU Syllabus Integration"] }
+                  { name: "Zero-Entry Strategy", price: "₹0", features: ["1 Million Lambda Requests/mo", "25GB DynamoDB Storage", "5GB Standard S3 Vault"] },
+                  { name: "AI Ops (Nova Lite)", price: "₹0.25", features: ["Per Request optimized", "Vernacular RAG Embeddings", "75% Lower Cost than Claude"] },
+                  { name: "Monthly Pilot", price: "< ₹800", features: ["Scales to first 100 students", "Zero idle infra costs", "Full 22+ Lng support"] }
                 ].map((p, i) => (
-                  <div key={i} style={{ padding: 48, background: isDarkMode ? C.bg2 : "white", borderRadius: 32, border: p.accent ? `2px solid ${C.blue}` : `1px solid ${C.border}`, position: "relative" }}>
-                    {p.accent && <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", background: C.grad, color: "white", padding: "6px 16px", borderRadius: 20, fontSize: 11, fontWeight: 800 }}>RECOMMENDED</div>}
+                  <div key={i} style={{ padding: 48, background: isDarkMode ? C.bg2 : "white", borderRadius: 32, border: `1px solid ${C.border}` }}>
                     <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 12 }}>{p.name}</h3>
-                    <div style={{ fontSize: 40, fontWeight: 900, marginBottom: 32 }}>{p.price}<span style={{ fontSize: 16, fontWeight: 400, opacity: 0.5 }}>/mo</span></div>
-                    <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 16, marginBottom: 40 }}>
+                    <div style={{ fontSize: 40, fontWeight: 900, marginBottom: 32, color: C.blue }}>{p.price}</div>
+                    <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 16 }}>
                       {p.features.map(f => <li key={f} style={{ fontSize: 15, display: "flex", alignItems: "center", gap: 12, opacity: 0.8 }}><Check size={18} color={C.blue}/> {f}</li>)}
                     </ul>
-                    <button className="ds-btn" style={{ width: "100%", justifyContent: "center" }}>Select Plan</button>
                   </div>
                 ))}
              </div>
@@ -306,27 +298,29 @@ export default function HomePage() {
            </div>
         </section>
 
+        {/* FOOTER */}
         <footer style={{ padding: "80px 40px 40px", background: isDarkMode ? C.bg1 : "#f1f5f9", borderTop: `1px solid ${C.border}` }}>
           <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 60 }}>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}><Code2 size={28} color={C.blue} /><span style={{ fontSize: 24, fontWeight: 900 }}>DevSathi</span></div>
               <p style={{ fontSize: 15, opacity: 0.6, lineHeight: 1.7, marginBottom: 24 }}>{t.footerTag}</p>
               <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 16px", background: isDarkMode ? "rgba(255,255,255,0.05)" : "white", borderRadius: 8, border: `1px solid ${C.border}`, fontSize: 12, fontWeight: 700 }}>
-                 <Cloud size={16} color={C.blue}/> BUILT ON AWS
+                 <Cloud size={16} color={C.blue}/> BUILT ON AWS FOR BHARAT
               </div>
             </div>
             <div>
               <h4 style={{ fontSize: 18, fontWeight: 800, marginBottom: 24 }}>{t.resources}</h4>
               <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 16 }}>
-                <li><a href="https://github.com/palakgoda" target="_blank" className="nav-link" style={{opacity:1, display:"flex", alignItems:"center", gap:10}} rel="noreferrer"><Github size={18}/> GitHub Repository</a></li>
+                <li><a href="https://github.com/Pa-go/AI_Bharat_DevSarthi.git" target="_blank" className="nav-link" style={{opacity:1, display:"flex", alignItems:"center", gap:10}} rel="noreferrer"><Github size={18}/> GitHub Repository</a></li>
                 <li><a href="#" className="nav-link" style={{opacity:1, display:"flex", alignItems:"center", gap:10}}><BookOpen size={18}/> {t.techDocs}</a></li>
                 <li><a href="#" className="nav-link" style={{opacity:1, display:"flex", alignItems:"center", gap:10}}><Video size={18}/> {t.demoVideo}</a></li>
+                {/* 🎯 Added AWS Architecture placeholder */}
                 <li><a href="#" className="nav-link" style={{opacity:1, display:"flex", alignItems:"center", gap:10}}><Map size={18}/> {t.architecture}</a></li>
               </ul>
             </div>
           </div>
           <div style={{ maxWidth: 1100, margin: "80px auto 0", borderTop: `1px solid ${C.border}`, textAlign: "center", paddingTop: 40 }}>
-            <p style={{ fontSize: 13, opacity: 0.5 }}>Handcrafted with ❤️ for <b>Bharat’s Digital Future</b> ✦ 2026. Powered by AWS GenAI.</p>
+            <p style={{ fontSize: 13, opacity: 0.5 }}>Handcrafted with ❤️ for <b>Bharat’s Digital Future</b> ✦ 2026. Powered by Amazon Bedrock.</p>
           </div>
         </footer>
       </div>
