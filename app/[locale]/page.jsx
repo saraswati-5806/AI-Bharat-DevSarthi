@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   TRANSLATIONS DICTIONARY (Fully Synchronized)
+   TRANSLATIONS DICTIONARY
    ═══════════════════════════════════════════════════════════════════════════ */
 const translations = {
   en: {
@@ -21,7 +21,7 @@ const translations = {
     heroTitle: "Your AI Coding Companion,",
     heroTitleGrad: "in Your Language.",
     heroSub: "Experience the all-in-one workspace for Bharat, Powered by Amazon Bedrock.",
-    getStarted: "Get Started", signIn: "Sign In", 
+    getStarted: "Get Started (Demo)", signIn: "Sign In", 
     journeyTitle: "The AWS Journey",
     journeySub: "5 Managed Services. 1 Seamless Workspace.",
     adaptiveTitle: "Adaptive 5-Panel Mastery",
@@ -40,7 +40,7 @@ const translations = {
     heroTitle: "तुमचा AI कोडिंग सोबती,",
     heroTitleGrad: "तुमच्या भाषेत.",
     heroSub: "भारतासाठी डिझाइन केलेले अष्टपैलू वर्कस्पेस, Amazon Bedrock द्वारे समर्थित.",
-    getStarted: "सुरुवात करा", signIn: "प्रवेश करा", 
+    getStarted: "सुरुवात करा (डेमो)", signIn: "प्रवेश करा", 
     adaptiveTitle: "अडॅप्टिव्ह ५-पॅनेल मास्टरी",
     adaptiveDesc: "१० टॅबमध्ये फिरणे थांबवा. देवसाथी एक प्रवाही वर्कस्पेस प्रदान करते. तुम्ही सी++ कोड डीबग करणे असो किंवा मुंबई विद्यापीठाच्या पीडीएफ शोधणे असो, आमचे ५-पॅनेल सिस्टम तुमचे लक्ष विचलित होऊ देत नाही.",
     vaultTitle: "व्हॉल्ट: तुमची शैक्षणिक मेमरी",
@@ -55,9 +55,9 @@ const translations = {
   hi: {
     navHome: "होम", navFeatures: "विशेषताएं", navVault: "वॉल्ट", navPricing: "कीमत", navAbout: "परिचय",
     heroTitle: "आपका AI कोडिंग साथी,",
-    heroTitleGrad: "आपकी अपनी भाषा में।",
+    heroTitleGrad: "आपका अपनी भाषा में।",
     heroSub: "भारत के लिए ऑल-इन-वन वर्कस्पेस, Amazon Bedrock द्वारा संचालित।",
-    getStarted: "शुरू करें", signIn: "साइन इन करें", 
+    getStarted: "शुरू करें (डेमो)", signIn: "साइन इन करें", 
     adaptiveTitle: "अडॅप्टिव्ह 5-पैनल मास्टरी",
     adaptiveDesc: "10 ब्राउज़र टैब के बीच स्विच करना बंद करें। देवसाथी एक सहज वातावरण प्रदान करता है। चाहे आप C++ कोड डीबग कर रहे हों या मुंबई विश्वविद्यालय की पीडीएफ पर शोध कर रहे हों, हमारा 5-पैनल सिस्टम आपका ध्यान केंद्रित रखता है।",
     vaultTitle: "वॉल्ट: आपकी शैक्षणिक मेमोरी",
@@ -97,11 +97,13 @@ function Header({ t, locale, isDarkMode, setIsDarkMode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
   const handleLangChange = (e) => {
     const newLocale = e.target.value;
     const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
@@ -155,7 +157,6 @@ export default function HomePage() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const t = translations[locale] || translations.en;
 
-  // 🚨 THIS IS THE CRITICAL FIX: Tell Tailwind that the mode changed!
   useEffect(() => { 
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
@@ -173,13 +174,23 @@ export default function HomePage() {
         
         <Header t={t} locale={locale} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
 
-        {/* 1. HERO + ADAPTIVE */}
+        {/* 1. HERO SECTION */}
         <section id="hero" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "140px 24px 80px" }}>
           <div style={{ textAlign: "center", maxWidth: 1100 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 16px", background: C.gradSoft, borderRadius: 99, color: C.blue, fontSize: 12, fontWeight: 700, marginBottom: 24 }}><Sparkles size={14} /> THE AI STUDENT REVOLUTION</div>
             <h1 style={{ fontSize: "clamp(44px, 8vw, 76px)", fontWeight: 900, lineHeight: 1.1, marginBottom: 24 }}>{t.heroTitle} <br /><span style={{ background: C.grad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{t.heroTitleGrad}</span></h1>
             <p style={{ fontSize: 20, opacity: 0.7, maxWidth: 650, margin: "0 auto 48px" }}>{t.heroSub}</p>
-            <button onClick={() => router.push(`/${locale}/signup`)} className="ds-btn" style={{ padding: "18px 48px", fontSize: 18, marginBottom: 80 }}>
+            
+            {/* 🎯 BYPASS BUTTON: DIRECT TO DASHBOARD */}
+            <button 
+              onClick={() => {
+                localStorage.setItem("user_authenticated", "true"); 
+                localStorage.setItem("demo_mode", "true");
+                router.push(`/${locale}/dashboard`);
+              }} 
+              className="ds-btn" 
+              style={{ padding: "18px 48px", fontSize: 18, marginBottom: 80 }}
+            >
               {t.getStarted} <ChevronRight size={22} />
             </button>
             
@@ -282,7 +293,6 @@ export default function HomePage() {
            </div>
         </section>
 
-        {/* FOOTER */}
         <footer style={{ padding: "80px 40px 40px", background: isDarkMode ? C.bg1 : "#f1f5f9", borderTop: `1px solid ${C.border}` }}>
           <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 60 }}>
             <div>
@@ -295,7 +305,7 @@ export default function HomePage() {
             <div>
               <h4 style={{ fontSize: 18, fontWeight: 800, marginBottom: 24 }}>{t.resources}</h4>
               <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 16 }}>
-                <li><a href="https://github.com/palakgoda" target="_blank" className="nav-link" style={{opacity:1, display:"flex", alignItems:"center", gap:10}}><Github size={18}/> GitHub Repository</a></li>
+                <li><a href="https://github.com/palakgoda" target="_blank" className="nav-link" style={{opacity:1, display:"flex", alignItems:"center", gap:10}} rel="noreferrer"><Github size={18}/> GitHub Repository</a></li>
                 <li><a href="#" className="nav-link" style={{opacity:1, display:"flex", alignItems:"center", gap:10}}><BookOpen size={18}/> {t.techDocs}</a></li>
                 <li><a href="#" className="nav-link" style={{opacity:1, display:"flex", alignItems:"center", gap:10}}><Video size={18}/> {t.demoVideo}</a></li>
                 <li><a href="#" className="nav-link" style={{opacity:1, display:"flex", alignItems:"center", gap:10}}><Map size={18}/> {t.architecture}</a></li>
