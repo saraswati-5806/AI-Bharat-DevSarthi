@@ -181,18 +181,31 @@ export default function HomePage() {
             <h1 style={{ fontSize: "clamp(44px, 8vw, 76px)", fontWeight: 900, lineHeight: 1.1, marginBottom: 24 }}>{t.heroTitle} <br /><span style={{ background: C.grad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{t.heroTitleGrad}</span></h1>
             <p style={{ fontSize: 20, opacity: 0.7, maxWidth: 650, margin: "0 auto 48px" }}>{t.heroSub}</p>
             
-            {/* 🎯 BYPASS BUTTON: DIRECT TO DASHBOARD */}
-            <button 
-              onClick={() => {
-                localStorage.setItem("user_authenticated", "true"); 
-                localStorage.setItem("demo_mode", "true");
-                router.push(`/${locale}/dashboard`);
-              }} 
-              className="ds-btn" 
-              style={{ padding: "18px 48px", fontSize: 18, marginBottom: 80 }}
-            >
-              {t.getStarted} <ChevronRight size={22} />
-            </button>
+           {/* 🎯 BYPASS BUTTON: DIRECT TO DASHBOARD */}
+<button 
+  onClick={() => {
+    // 1. Set the auth flags
+    localStorage.setItem("user_authenticated", "true"); 
+    localStorage.setItem("demo_mode", "true");
+    
+    // 2. ⚡ ADD THIS: Provide a mock user object so the Dashboard doesn't crash
+    const demoUser = {
+      name: "Priya",
+      email: "abc@aws.com",
+      university: "Mumbai University",
+      course: "Computer Engineering",
+      isDemo: true
+    };
+    localStorage.setItem("devSathiUser", JSON.stringify(demoUser));
+    
+    // 3. Navigate
+    router.push(`/${locale}/dashboard`);
+  }} 
+  className="ds-btn" 
+  style={{ padding: "18px 48px", fontSize: 18, marginBottom: 80 }}
+>
+  {t.getStarted} <ChevronRight size={22} />
+</button>
             
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 60, alignItems: "center", textAlign: "left", background: isDarkMode ? "#0f172a" : "#f8fafc", padding: 40, borderRadius: 32, border: `1px solid ${C.border}` }}>
                <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: `1px solid ${C.border}`, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}>
