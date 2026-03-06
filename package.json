@@ -20,7 +20,7 @@
     "@tailwindcss/postcss": "^4.2.1",
     "bcryptjs": "^3.0.3",
     "lucide-react": "^0.575.0",
-    "next": "^16.1.6",
+    "next": "15.1.7",
     "next-intl": "^4.8.3",
     "prismjs": "^1.30.0",
     "pyodide": "^0.29.3",
