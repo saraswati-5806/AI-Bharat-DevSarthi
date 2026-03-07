@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 const client = new BedrockRuntimeClient({
   region: process.env.SATHI_AWS_REGION || "us-east-1", 
   credentials: {
-    accessKeyId: process.env.SATHI_AWS_ACCESS_KEY_ID?.trim() || "",
-    secretAccessKey: process.env.SATHI_AWS_SECRET_ACCESS_KEY?.trim() || "",
+    accessKeyId: process.env.NEXT_PUBLIC_SATHI_AWS_ACCESS_KEY_ID?.trim() || "",
+    secretAccessKey: process.env.NEXT_PUBLIC_SATHI_AWS_SECRET_ACCESS_KEY?.trim() || "",
   },
 });
 
