@@ -20,6 +20,7 @@
     "@tailwindcss/postcss": "^4.2.1",
     "bcryptjs": "^3.0.3",
     "lucide-react": "^0.575.0",
+    "mermaid": "^11.12.3",
     "next": "15.1.7",
     "next-intl": "^4.8.3",
     "prismjs": "^1.30.0",
@@ -28,6 +29,7 @@
     "react-dom": "^19.2.4",
     "react-markdown": "^10.1.0",
     "react-simple-code-editor": "^0.14.1",
+    "react-x-mermaid": "^0.0.10",
     "unpdf": "^1.4.0"
   },
   "devDependencies": {

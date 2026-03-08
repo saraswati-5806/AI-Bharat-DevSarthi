@@ -24,8 +24,8 @@ export default function SignupFlow() {
   const handleDemoAccess = () => {
     setLoading(true);
     const demoUser = {
-      name: "Hackathon Judge",
-      email: "judge@aws.com",
+      name: "Priya",
+      email: "P123@.com",
       university: "Mumbai University",
       course: "Computer Engineering",
       isDemo: true

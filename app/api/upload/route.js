@@ -3,7 +3,6 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { NextResponse } from "next/server";
 import { extractText } from "unpdf";
 
-// 🎯 INITIALIZING WITH SATHI PREFIX
 const s3Client = new S3Client({
   region: process.env.SATHI_AWS_REGION || "us-east-1", 
   credentials: {
@@ -17,19 +16,15 @@ export async function POST(req) {
     const formData = await req.formData();
     const file = formData.get("file");
 
-    if (!file) {
-      return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
-    }
+    if (!file) return NextResponse.json({ error: "No file" }, { status: 400 });
 
-    // 1. Prepare Buffers
     const arrayBuffer = await file.arrayBuffer();
-    const bufferForS3 = Buffer.from(arrayBuffer.slice(0));
-    const bufferForAI = arrayBuffer.slice(0);
-
+    const bufferForS3 = Buffer.from(arrayBuffer);
+    
     const fileName = `${Date.now()}-${file.name.replace(/\s+/g, '_')}`;
     const bucketName = process.env.SATHI_AWS_BUCKET_NAME || "devsathi-student-notes-2026";
 
-    // 2. 📤 Upload to S3
+    // 1. 📤 Upload
     await s3Client.send(new PutObjectCommand({
       Bucket: bucketName,
       Key: fileName,
@@ -37,28 +32,30 @@ export async function POST(req) {
       ContentType: file.type,
     }));
 
-    // 3. 🔗 Generate Presigned URL for Preview (Valid for 1 hour)
+    // 2. 🔗 Preview URL
     const getCommand = new GetObjectCommand({ Bucket: bucketName, Key: fileName });
     const viewUrl = await getSignedUrl(s3Client, getCommand, { expiresIn: 3600 });
 
-    // 4. 🧠 Extract Text for AI Context
+    // 3. 🧠 Better Extraction
     let extractedText = "";
     if (file.type === "application/pdf") {
       try {
-        const { text } = await extractText(bufferForAI);
-        extractedText = text.join("\n\n");
+        const { text } = await extractText(arrayBuffer);
+        // Clean up the text: remove extra whitespace and non-ASCII junk
+        extractedText = text.join(" ").replace(/\s+/g, ' ').trim();
       } catch (e) {
         extractedText = "Error parsing PDF text.";
       }
     } else {
-      extractedText = Buffer.from(bufferForAI).toString('utf-8');
+      extractedText = Buffer.from(arrayBuffer).toString('utf-8');
     }
 
     return NextResponse.json({ 
       success: true, 
       fileName, 
       viewUrl, 
-      extractedText: extractedText.substring(0, 15000) 
+      // 🚀 Increased to 50k chars - Nova Lite can easily handle this
+      extractedText: extractedText.substring(0, 50000) 
     });
 
   } catch (error) {
