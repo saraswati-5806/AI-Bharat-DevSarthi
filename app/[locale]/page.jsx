@@ -8,228 +8,244 @@ import {
   FileSearch, Cpu, Columns3, LayoutDashboard,
   ShieldCheck, Database, Cloud, HardDrive, 
   WifiOff, BookText, Video, Map, Languages,
-  Target, Rocket, Layers, Check, CreditCard,
-  FileText, Share2, Terminal, BookOpen
+  Target, Rocket, Layers, Check, FileText, 
+  Terminal, BookOpen, ExternalLink, Activity
 } from "lucide-react";
 
 const translations = {
   en: {
-    navHome: "Home", navFeatures: "Tech Stack", navVault: "The Vault", navPricing: "Cost Strategy", navAbout: "About",
-    heroTag: "BHARAT'S VERNACULAR AI MISSION",
-    heroTitle: "Empowering Bharat's Students,",
-    heroTitleGrad: "in Your Mother Tongue.",
-    heroSub: "The all-in-one vernacular workspace powered by Amazon Bedrock. Optimized for Mumbai University students.",
-    getStarted: "Get Started (Demo Access)", signIn: "Sign In", 
+    navHome: "Home", navFeatures: "Features", navVault: "The Vault", navAbout: "About",
+    heroTag: "POWERED BY AMAZON BEDROCK",
+    heroTitle: "Your AI Coding Companion,",
+    heroTitleGrad: "in Your Language.",
+    heroSub: "Experience the all-in-one workspace for Bharat. Optimized for Mumbai University & regional excellence.",
+    getStarted: "Get Started for Free", signIn: "Sign In",
     journeyTitle: "The AWS Journey",
-    journeySub: "Built for Bharat-scale with Serverless Efficiency.",
-    adaptiveTitle: "Adaptive 3-Panel Mastery",
-    adaptiveDesc: "Stop switching tabs. Our fluid 3-panel environment—Context, Reasoning, and Vault—breaks the language barrier. Analyze MU PDFs or debug code with AI tutoring in Marathi, Hindi, and 22+ official Indian languages.",
-    vaultTitle: "The Vault: Academic RAG",
-    vaultDesc: "Powered by Amazon S3 and Bedrock, the Vault turns static syllabus PDFs into interactive personal tutors. Real-time tutoring that understands your mother tongue.",
-    aboutTitle: "Our Mission for Bharat",
-    aboutDesc: "DevSathi bridges the digital divide for students across Bharat. By combining AWS Generative AI with native regional language logic, we are democratizing technical education for every student.",
-    impact1Title: "Bridging the Vernacular Gap",
-    impact1Desc: "Converting English-heavy technical curriculum into native logic for better conceptual clarity and faster learning.",
-    impact2Title: "Tier-2/3 Empowerment",
-    impact2Desc: "Bringing Mumbai-standard AI tutoring to students who lack access to expensive coaching or high-end resources.",
-    impact3Title: "NEP 2020 Alignment",
-    impact3Desc: "Built to support the government's vision of technical education in regional languages through scalable AI.",
-    pricingTitle: "Zero-Entry Strategy",
-    pricingSub: "AWS-First Implementation for Maximum Cost Efficiency.",
+    journeySub: "How we power your learning from 1 to 5.",
+    featureTitle: "Bharat-First Engineering",
+    featureSub: "Tailored for the unique needs of Indian students.",
     footerTag: "Empowering the next generation of IT professionals in Bharat.",
-    resources: "Resources", demoVideo: "Demo Video", architecture: "AWS Architecture", techDocs: "Technical Docs"
+    handcrafted: "Handcrafted with ❤️ for Bharat’s Digital Future ✦ 2026. Powered by AWS GenAI."
   },
   mr: {
-    navHome: "मुख्यपृष्ठ", navFeatures: "टेक स्टॅक", navVault: "व्हॉल्ट", navPricing: "किंमत धोरण", navAbout: "बद्दल",
-    heroTag: "भारताचे प्रादेशिक AI अभियान",
-    heroTitle: "भारतातील विद्यार्थ्यांना सक्षम करणे,",
-    heroTitleGrad: "तुमच्या मातृभाषेत.",
-    heroSub: "Amazon Bedrock द्वारे समर्थित पहिले प्रादेशिक वर्कस्पेस. मुंबई विद्यापीठाच्या विद्यार्थ्यांसाठी विशेषतः डिझाइन केलेले.",
-    getStarted: "सुरुवात करा (डेमो)", signIn: "प्रवेश करा", 
-    adaptiveTitle: "अडॅप्टिव्ह ३-पॅनेल मास्टरी",
-    adaptiveDesc: "टॅब बदलणे थांबवा. आमचे ३-पॅनेल वातावरण भाषेचा अडथळा दूर करते. मराठी, हिंदी आणि २२+ भारतीय भाषांमध्ये मार्गदर्शन मिळवा.",
-    vaultTitle: "व्हॉल्ट: शैक्षणिक RAG",
-    vaultDesc: "S3 आणि Bedrock द्वारे समर्थित, हा व्हॉल्ट तुमच्या सिलॅबसला एका वैयक्तिक ट्यूटरमध्ये रूपांतरित करतो जो तुमच्या भाषेत बोलतो.",
-    aboutTitle: "भारतासाठी आमचे ध्येय",
-    aboutDesc: "प्रादेशिक भाषा समर्थनासह AWS GenAI ला जोडून, आम्ही भारतातील प्रत्येक विद्यार्थ्यासाठी तांत्रिक शिक्षण सुलभ करत आहोत.",
-    impact1Title: "प्रादेशिक भाषेतील शिक्षण",
-    impact1Desc: "इंग्रजी तांत्रिक अभ्यासक्रम स्थानिक भाषेत समजून घेण्यास मदत करणे.",
-    impact2Title: "ग्रामीण सक्षमीकरण",
-    impact2Desc: "दुर्गम भागातील विद्यार्थ्यांना जागतिक दर्जाचे AI मार्गदर्शन उपलब्ध करून देणे.",
-    impact3Title: "NEP २०२० सुसंगतता",
-    impact3Desc: "प्रादेशिक भाषेतून तांत्रिक शिक्षण देण्याच्या सरकारच्या व्हिजनला पाठिंबा देणे.",
-    pricingTitle: "झिरो-एंट्री स्ट्रॅटेजी",
-    pricingSub: "जास्तीत जास्त खर्च कार्यक्षमतेसाठी AWS-First अंमलबजावणी.",
+    navHome: "होम", navFeatures: "वैशिष्ट्ये", navVault: "व्हॉल्ट", navAbout: "बद्दल",
+    heroTag: "AMAZON BEDROCK द्वारे समर्थित",
+    heroTitle: "तुमचा AI कोडिंग सोबती,",
+    heroTitleGrad: "तुमच्या भाषेत.",
+    heroSub: "भारतासाठी सर्वसमावेशक वर्कस्पेस. मुंबई विद्यापीठ आणि प्रादेशिक उत्कृष्टतेसाठी अनुकूल.",
+    getStarted: "विनामूल्य सुरुवात करा", signIn: "प्रवेश करा",
+    journeyTitle: "AWS प्रवास",
+    journeySub: "आम्ही तुमचे शिक्षण १ ते ५ मध्ये कसे सक्षम करतो.",
+    featureTitle: "भारत-प्रथम अभियांत्रिकी",
+    featureSub: "भारतीय विद्यार्थ्यांच्या गरजांनुसार तयार केलेले.",
     footerTag: "भारतातील आयटी व्यावसायिकांच्या पुढच्या पिढीला सक्षम करणे.",
-    resources: "संसाधने", demoVideo: "डेमो व्हिडिओ", architecture: "AWS आर्किटेक्चर", techDocs: "तांत्रिक दस्तऐवज"
-  },
-  hi: {
-    navHome: "होम", navFeatures: "टेक स्टैक", navVault: "वॉल्ट", navPricing: "लागत रणनीति", navAbout: "परिचय",
-    heroTag: "भारत का क्षेत्रीय AI मिशन",
-    heroTitle: "भारत के छात्रों को सशक्त बनाना,",
-    heroTitleGrad: "अपनी मातृभाषा में।",
-    heroSub: "Amazon Bedrock द्वारा संचालित ऑल-इन-वन क्षेत्रीय वर्कस्पेस। मुंबई विश्वविद्यालय के छात्रों के लिए विशेष रूप से निर्मित।",
-    getStarted: "शुरू करें (डेमो)", signIn: "साइन इन करें", 
-    adaptiveTitle: "अडॅप्टिव्ह 3-पैनल मास्टरी",
-    adaptiveDesc: "टैब बदलना बंद करें। हमारा 3-पैनल वातावरण भाषा की बाधा को तोड़ता है। मराठी, हिंदी और 22+ भारतीय भाषाओं में ट्यूशन प्राप्त करें।",
-    vaultTitle: "वॉल्ट: शैक्षणिक RAG",
-    vaultDesc: "S3 और Bedrock द्वारा संचालित, यह वॉल्ट आपके सिलेबस को एक व्यक्तिगत ट्यूटर में बदल देता है जो आपकी अपनी भाषा समझता है।",
-    aboutTitle: "भारत के लिए हमारा लक्ष्य",
-    aboutDesc: "क्षेत्रीय भाषा समर्थन के साथ AWS GenAI को जोड़कर, हम भारत के हर छात्र के लिए तकनीकी शिक्षा का लोकतंत्रीकरण कर रहे हैं।",
-    impact1Title: "क्षेत्रीय भाषा सेतु",
-    impact1Desc: "कठिन अंग्रेजी तकनीकी पाठ्यक्रम को सरल क्षेत्रीय भाषा में परिवर्तित करना।",
-    impact2Title: "छात्र सशक्तिकरण",
-    impact2Desc: "Tier-2 और Tier-3 शहरों के छात्रों को विश्व स्तरीय AI ट्यूशन प्रदान करना।",
-    impact3Title: "NEP 2020 का समर्थन",
-    impact3Desc: "क्षेत्रीय भाषाओं में तकनीकी शिक्षा को बढ़ावा देने की सरकारी पहल का समर्थन करना।",
-    pricingTitle: "जीरो-एंट्री रणनीति",
-    pricingSub: "अधिकतम लागत दक्षता के लिए AWS-First कार्यान्वयन।",
-    footerTag: "भारत के आईटी पेशेवरों की अगली पीढ़ी को सशक्त बनाना।",
-    resources: "संसाधन", demoVideo: "डेमो वीडियो", architecture: "AWS आर्किटेक्चर", techDocs: "तकनीकी दस्तावेज़"
+    handcrafted: "भारताच्या डिजिटल भविष्यासाठी प्रेमाने तयार केलेले ✦ २०२६. AWS GenAI द्वारे समर्थित."
   }
 };
 
 const C = {
-  bg0: "#020617", bg1: "#0f172a", bg2: "#1e293b",
-  blue: "#6366f1", purple: "#7c3aed",
-  grad: "linear-gradient(135deg, #6366f1 0%, #7c3aed 100%)",
-  gradSoft: "linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(124,58,237,0.15) 100%)",
-  border: "#1e293b",
+  bg0: "#020617", bg1: "#0f172a", 
+  blue: "#6366f1", purple: "#a855f7",
+  grad: "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)",
+  border: "rgba(255,255,255,0.08)",
 };
 
 const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap');
   html { scroll-behavior: smooth; }
-  body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; margin:0; padding:0; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: ${C.bg0}; color: white; margin:0; }
   .ds-btn {
-    background: ${C.grad}; color: #fff !important; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 10px; border: none; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 8px; transition: 0.2s; text-decoration: none;
+    background: ${C.grad}; color: white; font-weight: 700; padding: 14px 32px; border-radius: 12px; 
+    display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; cursor: pointer; border:none;
   }
-  .ds-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(99,102,241,0.4); }
-  .nav-link { color: inherit; text-decoration: none; font-size: 14px; font-weight: 600; opacity: 0.7; transition: 0.2s; }
-  .nav-link:hover { opacity: 1; color: ${C.blue}; }
-  .aws-card:hover { border-color: ${C.blue}; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(99,102,241,0.1); }
+  .ds-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(99,102,241,0.4); }
+  .nav-link { color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.2s; }
+  .nav-link:hover { color: white; }
+  .glass-card { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid ${C.border}; border-radius: 24px; padding: 32px; transition: 0.3s; }
+  .glass-card:hover { border-color: ${C.blue}; transform: translateY(-5px); }
+  .step-number { width: 40px; height: 40px; border-radius: 50%; background: ${C.grad}; display: flex; align-items: center; justify-content: center; font-weight: 900; margin-bottom: 16px; font-size: 14px; }
 `;
 
-function Header({ t, locale, isDarkMode, setIsDarkMode }) {
+export default function HomePage() {
+  const params = useParams();
   const router = useRouter();
   const pathname = usePathname();
+  const locale = params?.locale ?? "en";
+  const t = translations[locale] || translations.en;
   const [scrolled, setScrolled] = useState(false);
-  
+
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleLangChange = (e) => {
     const newLocale = e.target.value;
-    localStorage.setItem("sathi_lang", newLocale); // Persist lang
     const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
     router.push(newPath);
   };
 
   return (
-    <header style={{ 
-      position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, height: 75, 
-      background: isDarkMode ? (scrolled ? "rgba(2,6,23,0.85)" : "transparent") : (scrolled ? "rgba(255,255,255,0.9)" : "transparent"),
-      backdropFilter: scrolled ? "blur(20px)" : "none", 
-      borderBottom: `1px solid ${scrolled ? C.border : "transparent"}`, 
-      display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 40px", transition: "0.3s" 
-    }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <div style={{ width: 38, height: 38, borderRadius: 10, background: C.grad, display: "flex", alignItems: "center", justifyContent: "center" }}><Code2 size={20} color="white" /></div>
-        <div style={{ lineHeight: 1 }}>
-          <div style={{ fontSize: 19, fontWeight: 800 }}>DevSathi</div>
-          <div style={{ fontSize: 9, color: C.blue, fontWeight: "700", textTransform: "uppercase" }}>Empowering Bharat</div>
-        </div>
-      </div>
-      <nav style={{ display: "flex", gap: 32 }}>
-        <a href="#hero" className="nav-link">{t.navHome}</a>
-        <a href="#features" className="nav-link">{t.navFeatures}</a>
-        <a href="#vault" className="nav-link">{t.navVault}</a>
-        <a href="#pricing" className="nav-link">{t.navPricing}</a>
-        <a href="#about" className="nav-link">{t.navAbout}</a>
-      </nav>
-      <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-        <button onClick={() => setIsDarkMode(!isDarkMode)} style={{ background: "none", border: "none", cursor: "pointer" }}>
-          <Zap size={20} fill={isDarkMode ? "#fbbf24" : "none"} color={isDarkMode ? "#fbbf24" : "#64748b"} />
-        </button>
-        <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-          <Globe size={16} style={{ position: "absolute", left: 10, color: C.blue }} />
-          <select value={locale} onChange={handleLangChange} style={{ background: isDarkMode ? "#1e293b" : "#f1f5f9", color: "inherit", border: "none", padding: "6px 12px 6px 34px", borderRadius: "8px", fontSize: "13px", fontWeight: "600", appearance: "none", cursor: "pointer" }}>
-            <option value="en">English</option>
-            <option value="hi">हिंदी (Hindi)</option>
-            <option value="mr">मराठी (Marathi)</option>
-          </select>
-        </div>
-        <button onClick={() => router.push(`/${locale}/signup`)} className="ds-btn">{t.signIn} <ArrowRight size={16} /> </button>
-      </div>
-    </header>
-  );
-}
-
-export default function HomePage() {
-  const params = useParams();
-  const locale = params?.locale ?? "en";
-  const router = useRouter();
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const t = translations[locale] || translations.en;
-
-  useEffect(() => { 
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      document.body.style.backgroundColor = C.bg0;
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.body.style.backgroundColor = "#ffffff";
-    }
-  }, [isDarkMode]);
-
-  return (
     <>
       <style dangerouslySetInnerHTML={{ __html: GLOBAL_CSS }} />
-      <div style={{ background: isDarkMode ? C.bg0 : "#ffffff", color: isDarkMode ? "white" : "#020617", transition: "0.4s" }}>
-        <Header t={t} locale={locale} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-        <section id="hero" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "140px 24px 80px" }}>
-          <div style={{ textAlign: "center", maxWidth: 1100 }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 16px", background: C.gradSoft, borderRadius: 99, color: C.blue, fontSize: 12, fontWeight: 700, marginBottom: 24 }}><Sparkles size={14} /> {t.heroTag}</div>
-            <h1 style={{ fontSize: "clamp(44px, 8vw, 76px)", fontWeight: 900, lineHeight: 1.1, marginBottom: 24 }}>{t.heroTitle} <br /><span style={{ background: C.grad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{t.heroTitleGrad}</span></h1>
-            <p style={{ fontSize: 20, opacity: 0.7, maxWidth: 650, margin: "0 auto 48px" }}>{t.heroSub}</p>
-            <button 
-              onClick={() => {
-                localStorage.setItem("user_authenticated", "true"); 
-                localStorage.setItem("sathi_lang", locale);
-                const demoUser = { name: "Priya", email: "judge@mu.edu", initials: "P", isDemo: true };
-                localStorage.setItem("devSathiUser", JSON.stringify(demoUser));
-                router.push(`/${locale}/dashboard`);
-              }} 
-              className="ds-btn" 
-              style={{ padding: "18px 48px", fontSize: 18, marginBottom: 80 }}
-            >
-              {t.getStarted} <ChevronRight size={22} />
-            </button>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 60, alignItems: "center", textAlign: "left", background: isDarkMode ? "#0f172a" : "#f8fafc", padding: 40, borderRadius: 32, border: `1px solid ${C.border}` }}>
-               <div style={{ position: "relative", borderRadius: 20, overflow: "hidden", border: `1px solid ${C.border}`, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}>
-                  <div style={{ height: 300, background: C.bg0, display: "flex", padding: 10, gap: 10 }}>
-                     <div style={{ flex: 1, background: "#1e293b", borderRadius: 8 }}></div>
-                     <div style={{ flex: 1.5, background: C.grad, borderRadius: 8, opacity: 0.3 }}></div>
-                     <div style={{ flex: 1, background: "#1e293b", borderRadius: 8 }}></div>
+      
+      {/* 1. THE GLOBAL HEADER */}
+      <header style={{ 
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, height: 80, 
+        background: scrolled ? "rgba(2, 6, 23, 0.8)" : "transparent",
+        backdropFilter: scrolled ? "blur(16px)" : "none",
+        borderBottom: scrolled ? `1px solid ${C.border}` : "none",
+        display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 60px", transition: "0.3s"
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ width: 40, height: 40, borderRadius: 12, background: C.grad, display: "flex", alignItems: "center", justifyContent: "center" }}><Code2 size={24} color="white" /></div>
+          <span style={{ fontSize: 22, fontWeight: 900, letterSpacing: "-0.5px" }}>DevSathi</span>
+        </div>
+
+        <nav style={{ display: "flex", gap: 40 }}>
+          <a href="#home" className="nav-link">{t.navHome}</a>
+          <a href="#journey" className="nav-link">Features</a>
+          <a href="#features" className="nav-link">{t.navVault}</a>
+          <a href="#footer" className="nav-link">{t.navAbout}</a>
+        </nav>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+          <Zap size={20} color="#fbbf24" style={{ cursor: "pointer" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#1e293b", padding: "6px 12px", borderRadius: 10 }}>
+            <Globe size={16} color={C.blue} />
+            <select onChange={handleLangChange} value={locale} style={{ background: "none", color: "white", border: "none", fontSize: 13, fontWeight: 600, outline: "none", cursor: "pointer" }}>
+              <option value="en">English</option>
+              <option value="mr">मराठी</option>
+            </select>
+          </div>
+          <button onClick={() => router.push(`/${locale}/dashboard`)} className="ds-btn" style={{ padding: "10px 24px", fontSize: 14 }}>{t.signIn}</button>
+        </div>
+      </header>
+
+      {/* 2. THE HERO SECTION */}
+      <section id="home" style={{ minHeight: "100vh", padding: "160px 60px 100px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 20px", background: "rgba(99,102,241,0.1)", borderRadius: 100, color: C.blue, fontSize: 12, fontWeight: 800, marginBottom: 32, border: "1px solid rgba(99,102,241,0.2)" }}>
+          <Sparkles size={14} /> {t.heroTag}
+        </div>
+        <h1 style={{ fontSize: "clamp(48px, 7vw, 84px)", fontWeight: 900, lineHeight: 1, letterSpacing: "-2px", marginBottom: 24 }}>
+          {t.heroTitle} <br />
+          <span style={{ background: C.grad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{t.heroTitleGrad}</span>
+        </h1>
+        <p style={{ fontSize: 20, color: "#94a3b8", maxWidth: 700, marginBottom: 48, lineHeight: 1.6 }}>{t.heroSub}</p>
+        
+        <button onClick={() => router.push(`/${locale}/dashboard`)} className="ds-btn" style={{ fontSize: 18, padding: "20px 48px" }}>
+          {t.getStarted} <ArrowRight size={22} />
+        </button>
+
+        <div style={{ marginTop: 80, width: "100%", maxWidth: 1100, borderRadius: 32, border: `1px solid ${C.border}`, background: "#0f172a", padding: 12, boxShadow: "0 40px 100px rgba(0,0,0,0.5)" }}>
+          <div style={{ background: C.bg0, borderRadius: 24, height: 500, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+             <img src="/api/placeholder/1100/500" alt="Workspace Preview" style={{ opacity: 0.5 }} />
+             <div style={{ position: "absolute", textAlign: "center" }}>
+               <LayoutDashboard size={64} color={C.blue} style={{ marginBottom: 16 }} />
+               <p style={{ fontWeight: 800, color: "#475569" }}>WORKSPACE PREVIEW ACTIVE</p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. THE AWS JOURNEY (HORIZONTAL 1-5) */}
+      <section id="journey" style={{ padding: "120px 60px", background: "#000" }}>
+        <div style={{ textAlign: "center", marginBottom: 80 }}>
+          <h2 style={{ fontSize: 40, fontWeight: 900, marginBottom: 16 }}>{t.journeyTitle}</h2>
+          <p style={{ color: "#64748b" }}>{t.journeySub}</p>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 24 }}>
+          {[
+            { title: "Secure Identity", provider: "AWS Amplify", icon: <ShieldCheck />, desc: "One-tap secure login to your personalized workspace." },
+            { title: "The Brain", provider: "Amazon Bedrock", icon: <Cpu />, desc: "Sub-second AI tutoring in Hindi & Marathi via Nova Lite." },
+            { title: "The Vault", provider: "Amazon S3", icon: <Cloud />, desc: "A durable cloud library for all your college notes and PDFs." },
+            { title: "Persistent Memory", provider: "Amazon DynamoDB", icon: <Database />, desc: "Sathi remembers your progress across all devices." },
+            { title: "The Mastery", provider: "Multi-Panel UI", icon: <Layers />, desc: "5 engines integrated into one seamless adaptive screen." }
+          ].map((step, i) => (
+            <div key={i} className="glass-card">
+              <div className="step-number">{i + 1}</div>
+              <div style={{ color: C.blue, fontSize: 11, fontWeight: 800, marginBottom: 8, textTransform: "uppercase" }}>{step.provider}</div>
+              <h4 style={{ fontSize: 18, fontWeight: 800, marginBottom: 12 }}>{step.title}</h4>
+              <p style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. THE BHARAT-FIRST FEATURE GRID */}
+      <section id="features" style={{ padding: "120px 60px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
+          <div>
+            <h2 style={{ fontSize: 48, fontWeight: 900, marginBottom: 24 }}>{t.featureTitle}</h2>
+            <p style={{ fontSize: 18, color: "#64748b", marginBottom: 40 }}>{t.featureSub}</p>
+            
+            <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+              {[
+                { icon: <Languages />, title: "Vernacular Logic", desc: "Explains 'Recursion' using analogies like 'Chai Recipe' or 'Mumbai Local' in regional languages." },
+                { icon: <BookOpen />, title: "Syllabus Sync", desc: "Specifically tailored for Mumbai University & BSc IT curriculum patterns." },
+                { icon: <WifiOff />, title: "Low-Bandwidth Optimization", desc: "Engineered for Bharat's mobile data users with minimal asset loading." }
+              ].map((f, i) => (
+                <div key={i} style={{ display: "flex", gap: 20 }}>
+                  <div style={{ color: C.blue }}>{f.icon}</div>
+                  <div>
+                    <h5 style={{ fontSize: 18, fontWeight: 800, marginBottom: 4 }}>{f.title}</h5>
+                    <p style={{ fontSize: 14, color: "#64748b" }}>{f.desc}</p>
                   </div>
-                  <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,0.4)", backdropFilter: "blur(4px)" }}><Columns3 size={48} color="white" /></div>
-               </div>
-               <div>
-                  <h3 style={{ fontSize: 32, fontWeight: 800, marginBottom: 20 }}>{t.adaptiveTitle}</h3>
-                  <p style={{ fontSize: 17, opacity: 0.7, lineHeight: 1.8 }}>{t.adaptiveDesc}</p>
-               </div>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
-        {/* ... (Features, Vault, Pricing Sections truncated for space, identical to yours) ... */}
-        <footer style={{ padding: "80px 40px 40px", background: isDarkMode ? C.bg1 : "#f1f5f9", borderTop: `1px solid ${C.border}`, textAlign: "center" }}>
-          <p style={{ fontSize: 13, opacity: 0.5 }}>Handcrafted for Bharat’s Digital Future ✦ 2026. Powered by Amazon Bedrock.</p>
-        </footer>
-      </div>
+          <div style={{ background: C.gradSoft, borderRadius: 40, height: 500, border: `1px solid ${C.blue}33`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+             <Terminal size={120} color={C.blue} opacity={0.2} />
+          </div>
+        </div>
+      </section>
+
+      {/* 5. THE PROFESSIONAL FOOTER */}
+      <footer id="footer" style={{ background: "#000", padding: "100px 60px 40px", borderTop: `1px solid ${C.border}` }}>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 60, marginBottom: 80 }}>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+               <div style={{ width: 32, height: 32, borderRadius: 8, background: C.grad, display: "flex", alignItems: "center", justifyContent: "center" }}><Code2 size={18} color="white" /></div>
+               <span style={{ fontSize: 20, fontWeight: 900 }}>DevSathi</span>
+            </div>
+            <p style={{ color: "#64748b", fontSize: 14, lineHeight: 1.6, marginBottom: 24 }}>{t.footerTag}</p>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 12px", background: "#1e293b", borderRadius: 8, fontSize: 12, fontWeight: 700 }}>
+               <Cloud size={14} color={C.blue} /> Built on AWS
+            </div>
+          </div>
+
+          <div>
+            <h6 style={{ fontWeight: 800, marginBottom: 20, fontSize: 14 }}>Project Assets</h6>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <a href="#" className="https://github.com/Pa-go/AI_Bharat_DevSarthi.git" style={{ display: "flex", alignItems: "center", gap: 8 }}><Github size={14}/> GitHub Repo</a>
+              <a href="#" className="nav-link" style={{ display: "flex", alignItems: "center", gap: 8 }}><Youtube size={14}/> Submission Video</a>
+            </div>
+          </div>
+
+          <div>
+            <h6 style={{ fontWeight: 800, marginBottom: 20, fontSize: 14 }}>Documentation</h6>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <a href="#" className="nav-link">How Sathi Works</a>
+              <a href="#" className="nav-link">AWS Architecture</a>
+            </div>
+          </div>
+
+          <div>
+            <h6 style={{ fontWeight: 800, marginBottom: 20, fontSize: 14 }}>Support</h6>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <a href="#" className="nav-link">MU Community</a>
+              <a href="#" className="nav-link">Open Source</a>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 40, textAlign: "center" }}>
+          <p style={{ fontSize: 12, color: "#475569", fontWeight: 600 }}>{t.handcrafted}</p>
+        </div>
+      </footer>
     </>
   );
 }
