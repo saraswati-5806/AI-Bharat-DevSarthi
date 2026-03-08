@@ -1,45 +1,64 @@
+🚀 DevSathi: The Multi-Modal AI Syllabus Engine for MU
+"Aapka Personal Academic Mentor, in 22+ Languages."
 
-🚀 **DevSathi: Vernacular-First AI Tutoring Ecosystem**
+DevSathi is a next-generation study workspace designed specifically for Mumbai University (MU) students. It transforms static PDFs and YouTube lectures into interactive, high-retention learning experiences using Amazon Bedrock (Nova Lite).
 
-Bridging the gap between static technical textbooks and practical coding through a unified, vernacular-first AI tutoring ecosystem.
+🌟 The Core "Wow" Features
+1. 🧠 Senior Mentor Mode (Nova Lite)
+Powered by Amazon Nova Lite, DevSathi acts as a Senior Mentor who knows the MU curriculum inside out.
 
-DevSathi is a RAG-powered learning platform designed for the Indian student (Bharat). It eliminates the "Language-Logic Gap" by providing localized analogies and a unified workspace that combines resource viewing, AI tutoring, and live coding.
+Polyglot Support: Switch between English, Hindi, Marathi, and 20+ other languages mid-conversation.
 
-📌 **Problem Statement**:
-Students in Tier-2 and Tier-3 cities often understand complex technical logic but are hindered by English-heavy documentation and context-switching fatigue (jumping between PDFs, AI chats, and code editors).
+Syllabus-Aware: It prioritizes your uploaded PDF/Resource context. If it's a Maths PDF, it talks Maths; if it's Programming, it provides Code.
 
-✨ **Key Features**
-🧠 **Domain-Agnostic RAG**: Upload any PDF (NCERT, University Notes) for document-specific, hallucination-free tutoring. 
+2. 🧪 The Alchemy Lab
+One-click transformations of your study material:
 
-🗣️ **Vernacular Code-Switching**: AI explains logic in native dialects (Hindi, Tamil, etc.) while keeping technical syntax in English for exam readiness. 
+[Summary]: High-energy, ELI5 (Explain Like I'm 5) breakdowns.
 
-💻 **3-Column Adaptive Lab**: A unified interface featuring an integrated PDF Viewer, Vernacular AI Chat, and Monaco Code Editor. 
+[Mindmap]: Automated Mermaid.js flowcharts to visualize complex logic.
 
-🛡️ **VertiScore Guardrails**: A unique verification layer that ensures all AI responses are 100% factually accurate against the source document.
+[Audio]: Instant conversational lecture scripts with built-in TTS (Text-to-Speech) for auditory learners.
 
-**🛠️ Technical Ecosystem**
+3. 💻 Integrated Code Lab (WASM Engine)
+A built-in Python environment where students can:
 
-**Frontend Interface**
-1. Framework: Next.js 14 (App Router)
-2. Styling: Tailwind CSS
-3. Code Editor: Monaco Editor (The core of VS Code)
+Insert AI-generated code directly from the chat with one click.
 
-**AI & Intelligence Layer**
-1. LLM Reasoning: AWS Bedrock (Claude 3 Haiku)
-2. Vector Embeddings: AWS Titan Text Embeddings
-3. Orchestration: LangChain / Python FastAPI (Serverless)
+Run and test code locally using a WebAssembly (WASM) engine—no setup required.
 
-**Data & Infrastructure**
-1. Vector Database: Amazon OpenSearch Serverless
-2. Document Storage: Amazon S3
+4. 📂 Smart Resource Viewer
+CORS-Bypass Architecture: High-reliability S3 PDF rendering.
 
-**NoSQL Database: Amazon DynamoDB (User progress & logs)**
+YouTube Sync: Watch lectures and chat with the AI about the video content in real-time.
 
-**🚀 Future Roadmap**
-**Short Term:** Speech-to-Text for hands-free coding and multi-modal support for handwritten diagrams. 
-**Mid Term:** Offline-First PWA for students in low-connectivity rural areas. 
-**Long Term:** Peer-to-Peer Learning Network for quality control of AI-generated vernacular analogies.
+🛠️ Tech Stack
+Frontend: Next.js 15 (App Router), Tailwind CSS, Framer Motion.
 
-**📈 Potential Impact**
-**Inclusivity**: Democratizing high-quality tech education for 1M+ students in Tier-2/3 cities. 
-**Efficiency**: Reducing the "Learning-to-Coding" turnaround time by 40%.
+AI Orchestration: Amazon Bedrock (Model: amazon.nova-lite-v1:0).
+
+Storage: Amazon S3 (Scalable Resource Management).
+
+Deployment: AWS Amplify.
+
+Diagrams: Mermaid.js.
+
+Runtime: Pyodide (Python in the Browser).
+
+🎯 Why DevSathi?
+MU students often struggle with complex technical subjects and language barriers. DevSathi bridges this gap by providing:
+
+Language Inclusivity: Learn in your mother tongue.
+
+Contextual Accuracy: No more generic AI hallucinations; it stays strictly on your notes.
+
+Active Learning: Don't just read—visualize, listen, and code.
+
+🚀 How to Run
+Clone the repo.
+
+Add your AWS Credentials to .env.local.
+
+Run npm install and npm run dev.
+
+Upload your MU Notes and start learning!

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
-import ProfileModal from "../profile/profileModal"; 
+import ProfileModal from "../profile/ProfileModal"; 
 import { LayoutDashboard, FolderGit2, LogOut, Zap, Menu, Loader2, Plus, Lock, Sparkles, BrainCircuit, Target, FileText, Code2, Clock, Moon, Sun, Globe, Award, MessageSquare, CheckCircle2, Mic, Eye } from "lucide-react";
 
 export default function DashboardPage() {
