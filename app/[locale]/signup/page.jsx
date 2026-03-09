@@ -1,133 +1,176 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Code2, ArrowRight, Loader2, Sparkles, ChevronLeft, ShieldAlert } from "lucide-react";
+import { Code2, ArrowRight, Loader2, Sparkles, ChevronLeft } from "lucide-react";
+
+const C = {
+  bg0: "#020617",
+  bg1: "#0f172a",
+  blue: "#6366f1",
+  purple: "#a855f7",
+  grad: "linear-gradient(135deg, #6366f1 0%, #a855f7 100%)",
+  border: "rgba(255,255,255,0.08)",
+};
 
 const translations = {
-  en: { signIn: "Sign In", signInSub: "Welcome back.", emailLabel: "EMAIL", passLabel: "PASSWORD", newHere: "New here?", createAccount: "Create account", registration: "Registration", regSub: "Join us.", fullName: "FULL NAME", university: "UNIVERSITY", course: "COURSE", backBtn: "Back", btnCreate: "Create", alertSuccess: "Success! Sign in now.", demoBtn: "Demo Access (Instant)" },
-  mr: { signIn: "प्रवेश करा", signInSub: "स्वागत आहे.", emailLabel: "ईमेल", passLabel: "पासवर्ड", newHere: "नवीन आहात?", createAccount: "खाते तयार करा", registration: "नोंदणी", regSub: "सहभागी व्हा.", fullName: "पूर्ण नाव", university: "विद्यापीठ", course: "कोर्स", backBtn: "परत", btnCreate: "तयार करा", alertSuccess: "यशस्वी!", demoBtn: "डेमो प्रवेश" },
-  hi: { signIn: "साइन इन", signInSub: "स्वागत है।", emailLabel: "ईमेल", passLabel: "पासवर्ड", newHere: "नए हैं?", createAccount: "खाता बनाएं", registration: "पंजीकरण", regSub: "जुड़ें।", fullName: "पूरा नाव", university: "विश्वविद्यालय", course: "कोर्स", backBtn: "वापस", btnCreate: "बनाएं", alertSuccess: "सफल!", demoBtn: "डेमो एक्सेस" }
+  en: {
+    brand: "DevSathi", title: "Sign In", registration: "Registration", phEmail: "EMAIL", phPass: "PASSWORD",
+    btnSignIn: "Sign In", demoText: "OR BYPASS FOR DEMO", btnDemo: "Demo Access (Instant)",
+    linkCreate: "Create account", backBtn: "Back", fullName: "Full Name", university: "University",
+    btnCreate: "Create Account", msgMatch: "Passwords do not match!", msgSuccess: "Account created! Please Sign In."
+  },
+  hi: {
+    brand: "DevSathi", title: "साइन इन करें", registration: "पंजीकरण", phEmail: "ईमेल", phPass: "पासवर्ड",
+    btnSignIn: "साइन इन करें", demoText: "या डेमो के लिए बायपास करें", btnDemo: "डेमो एक्सेस (तुरंत)",
+    linkCreate: "अकाउंट बनाएं", backBtn: "पीछे", fullName: "पूरा नाम", university: "विश्वविद्यालय",
+    btnCreate: "अकाउंट बनाएं", msgMatch: "पासवर्ड मेल नहीं खाते!", msgSuccess: "अकाउंट बन गया! कृपया साइन इन करें।"
+  },
+  mr: {
+    brand: "DevSathi", title: "साइन इन करा", registration: "नोंदणी", phEmail: "ईमेल", phPass: "पासवर्ड",
+    btnSignIn: "साइन इन करा", demoText: "किंवा डेमोसाठी बायपास करा", btnDemo: "डेमो ॲक्सेस (त्वरित)",
+    linkCreate: "अकाउंट तयार करा", backBtn: "परत", fullName: "पूर्ण नाव", university: "विद्यापीठ",
+    btnCreate: "अकाउंट तयार करा", msgMatch: "पासवर्ड जुळत नाहीत!", msgSuccess: "अकाउंट तयार झाले! कृपया साइन इन करा."
+  }
 };
+
+const AWS_LAMBDA_URL = "https://6ngxltk6lgc3flyu3lyx4wdd7i0kiokm.lambda-url.us-east-1.on.aws/"; 
 
 export default function SignupFlow() {
   const router = useRouter();
-  const { locale } = useParams();
+  const params = useParams();
+  const locale = params?.locale ?? "en";
   const t = translations[locale] || translations.en;
+  const [mounted, setMounted] = useState(false);
   const [step, setStep] = useState(1); 
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", password: "", confirmPassword: "", university: "", course: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "", confirmPassword: "", university: "" });
 
+  useEffect(() => { 
+    setMounted(true); 
+    // ⚡ Pre-loading dashboard assets for a faster transition
+    router.prefetch(`/${locale}/dashboard`);
+  }, [locale, router]);
+  
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // 🎯 THE HACKATHON BYPASS: Instant Login
+  // 🎯 DEMO BYPASS
   const handleDemoAccess = () => {
     setLoading(true);
-    const demoUser = {
-      name: "Priya",
-      email: "P123@.com",
-      university: "Mumbai University",
-      course: "Computer Engineering",
-      isDemo: true
+    const demoUser = { 
+      name: "Priya", email: "priya.demo@mumbai.university", 
+      university: "Mumbai University", course: "Computer Engineering", isDemo: true 
     };
-    // Match the exact key your dashboard looks for
     localStorage.setItem("devSathiUser", JSON.stringify(demoUser));
     localStorage.setItem("user_authenticated", "true");
-    
-    setTimeout(() => {
-      router.push(`/${locale}/dashboard`);
-    }, 800);
+    router.push(`/${locale}/dashboard`);
   };
 
-  const handleAction = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    if (step === 1) {
-      try {
-        const response = await fetch("/api/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: formData.email, password: formData.password }),
-        });
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error);
-        
-        localStorage.setItem("devSathiUser", JSON.stringify(data.user));
+  // 🎯 SIGN IN LOGIC
+  const handleLogin = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  try {
+    const url = `${AWS_LAMBDA_URL}?email=${encodeURIComponent(formData.email)}`;
+    const res = await fetch(url); // ⚡ Simple GET
+    
+    if (res.ok) {
+      const data = await res.json();
+      if (data.password === formData.password) {
+        localStorage.setItem("devSathiUser", JSON.stringify(data));
+        localStorage.setItem("user_authenticated", "true");
         router.push(`/${locale}/dashboard`);
-      } catch (err) {
-        // 🚦 If server fails, offer the Demo Access automatically
-        alert("Server Error: " + err.message + ". Try 'Demo Access' instead!");
-      } finally { setLoading(false); }
+      } else {
+        alert("Wrong password");
+      }
+    } else {
+      alert("User not found");
+    }
+  } catch (err) {
+    console.error("Login failed:", err);
+  }
+  setLoading(false);
+};
+
+  // 🎯 REGISTER LOGIC
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      alert(t.msgMatch);
       return;
     }
-
+    setLoading(true);
     try {
-      const response = await fetch("/api/auth/signup", {
+      const res = await fetch(AWS_LAMBDA_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          name: formData.name,
+          university: formData.university,
+          createdAt: new Date().toISOString()
+        })
       });
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error);
+      if (res.ok) { 
+        alert(t.msgSuccess); 
+        setStep(1); 
+      } else { 
+        alert("Signup Failed on Server"); 
       }
-      alert(t.alertSuccess);
-      setStep(1);
-    } catch (err) {
-      alert(err.message);
-    } finally { setLoading(false); }
+    } catch (err) { 
+      console.error("REG_ERROR:", err); 
+    }
+    setLoading(false);
   };
 
+  const inputBaseStyle = { background: C.bg0, border: `1px solid ${C.border}`, color: "#ffffff" };
+
+  if (!mounted) return <div style={{ background: "#020617", minHeight: "100vh" }} />;
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#020617] p-6">
-      <div className="w-full max-w-md bg-white dark:bg-[#0f172a] border border-gray-100 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
-        <div className="h-1.5 w-full bg-gradient-to-r from-indigo-500 to-purple-600" />
+    <div style={{ background: C.bg0 }} className="min-h-screen flex items-center justify-center p-6 font-sans text-white" suppressHydrationWarning>
+      <div style={{ background: C.bg1, border: `1px solid ${C.border}` }} className="w-full max-w-md rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+        <div style={{ background: C.grad, height: '6px' }} className="w-full" />
         <div className="p-10">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center"><Code2 size={18} color="white" /></div>
-            <span className="text-xl font-bold text-indigo-500">DevSathi</span>
+            <div style={{ background: C.grad }} className="w-10 h-10 rounded-xl flex items-center justify-center"><Code2 size={22} color="white" /></div>
+            <span style={{ fontSize: 22, fontWeight: 900, letterSpacing: "-1px" }}>{t.brand}</span>
           </div>
 
           {step === 1 ? (
-            <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4">
-              <h1 className="text-2xl font-black">{t.signIn}</h1>
-              
-              <form onSubmit={handleAction} className="space-y-4">
-                <input type="email" name="email" placeholder={t.emailLabel} required onChange={handleChange} className="w-full p-3.5 bg-gray-50 dark:bg-[#020617] border border-gray-200 dark:border-slate-700 rounded-xl outline-none text-gray-900 dark:text-white" />
-                <input type="password" name="password" placeholder={t.passLabel} required onChange={handleChange} className="w-full p-3.5 bg-gray-50 dark:bg-[#020617] border border-gray-200 dark:border-slate-700 rounded-xl outline-none text-gray-900 dark:text-white" />
-                <button type="submit" disabled={loading} className="w-full p-4 bg-gray-900 dark:bg-white dark:text-black text-white font-bold rounded-xl flex items-center justify-center gap-2">
-                  {loading ? <Loader2 className="animate-spin" /> : <>{t.signIn} <ArrowRight size={18}/></>}
+            <div className="space-y-6">
+              <h1 className="text-2xl font-black">{t.title}</h1>
+              <form onSubmit={handleLogin} className="space-y-4">
+                <input type="email" name="email" placeholder={t.phEmail} required onChange={handleChange} style={inputBaseStyle} className="w-full p-4 rounded-xl outline-none" />
+                <input type="password" name="password" placeholder={t.phPass} required onChange={handleChange} style={inputBaseStyle} className="w-full p-4 rounded-xl outline-none" />
+                <button type="submit" disabled={loading} style={{ background: 'white', color: 'black' }} className="w-full p-4 font-bold rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95 disabled:opacity-50">
+                  {loading ? <Loader2 className="animate-spin" /> : <>{t.btnSignIn} <ArrowRight size={18}/></>}
                 </button>
               </form>
-
               <div className="relative py-2">
-                <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-gray-200 dark:border-slate-800"></span></div>
-                <div className="relative flex justify-center text-xs uppercase"><span className="bg-white dark:bg-[#0f172a] px-2 text-gray-500">Or bypass for demo</span></div>
-              </div>
-
-              {/* 🚀 QUICK ACCESS BUTTON */}
-              <button 
-                onClick={handleDemoAccess} 
-                className="w-full p-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/20"
-              >
-                <Sparkles size={18} /> {t.demoBtn}
-              </button>
-
-              <button type="button" onClick={() => setStep(2)} className="w-full text-center text-sm font-bold text-indigo-500">{t.createAccount}</button>
+                 <div className="absolute inset-0 flex items-center"><span style={{ borderColor: C.border }} className="w-full border-t"></span></div>
+                 <div className="relative flex justify-center text-xs uppercase"><span style={{ background: C.bg1 }} className="px-2 text-gray-500 font-bold">{t.demoText}</span></div>
+               </div>
+               <button onClick={handleDemoAccess} style={{ background: C.grad }} className="w-full p-4 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95">
+                 <Sparkles size={18} /> {t.btnDemo}
+               </button>
+               <button type="button" onClick={() => setStep(2)} className="w-full text-center text-sm font-bold text-indigo-400">{t.linkCreate}</button>
             </div>
           ) : (
-            <form onSubmit={handleAction} className="space-y-4 animate-in fade-in slide-in-from-bottom-4">
-              <button type="button" onClick={() => setStep(1)} className="text-sm text-gray-400 flex items-center gap-1"><ChevronLeft size={14}/> {t.backBtn}</button>
+            <form onSubmit={handleRegister} className="space-y-4 animate-in slide-in-from-right-4">
+              <button type="button" onClick={() => setStep(1)} className="text-sm text-gray-400 flex items-center gap-1 mb-2 hover:text-white transition-colors"><ChevronLeft size={14}/> {t.backBtn}</button>
               <h1 className="text-2xl font-black">{t.registration}</h1>
-              <input type="text" name="name" placeholder={t.fullName} required onChange={handleChange} className="w-full p-3 bg-gray-50 dark:bg-[#020617] border border-gray-200 dark:border-slate-700 rounded-xl" />
-              <input type="email" name="email" placeholder={t.emailLabel} required onChange={handleChange} className="w-full p-3 bg-gray-50 dark:bg-[#020617] border border-gray-200 dark:border-slate-700 rounded-xl" />
+              <input type="text" name="name" placeholder={t.fullName} required onChange={handleChange} style={inputBaseStyle} className="w-full p-4 rounded-xl outline-none" />
+              <input type="email" name="email" placeholder={t.phEmail} required onChange={handleChange} style={inputBaseStyle} className="w-full p-4 rounded-xl outline-none" />
               <div className="grid grid-cols-2 gap-3">
-                <input type="password" name="password" placeholder="Pass" required onChange={handleChange} className="w-full p-3 bg-gray-50 dark:bg-[#020617] border border-gray-200 dark:border-slate-700 rounded-xl" />
-                <input type="password" name="confirmPassword" placeholder="Confirm" required onChange={handleChange} className="w-full p-3 bg-gray-50 dark:bg-[#020617] border border-gray-200 dark:border-slate-700 rounded-xl" />
+                <input type="password" name="password" placeholder="Pass" required onChange={handleChange} style={inputBaseStyle} className="p-4 rounded-xl outline-none" />
+                <input type="password" name="confirmPassword" placeholder="Confirm" required onChange={handleChange} style={inputBaseStyle} className="p-4 rounded-xl outline-none" />
               </div>
-              <input type="text" name="university" placeholder={t.university} required onChange={handleChange} className="w-full p-3 bg-gray-50 dark:bg-[#020617] border border-gray-200 dark:border-slate-700 rounded-xl" />
-              <button type="submit" disabled={loading} className="w-full p-4 bg-indigo-500 text-white font-bold rounded-xl">{loading ? <Loader2 className="animate-spin m-auto" /> : t.btnCreate}</button>
+              <input type="text" name="university" placeholder={t.university} required onChange={handleChange} style={inputBaseStyle} className="w-full p-4 rounded-xl outline-none" />
+              <button type="submit" disabled={loading} style={{ background: C.grad }} className="w-full p-4 text-white font-bold rounded-xl mt-4 transition-transform active:scale-95 disabled:opacity-50">
+                {loading ? <Loader2 className="animate-spin m-auto" /> : t.btnCreate}
+              </button>
             </form>
           )}
         </div>

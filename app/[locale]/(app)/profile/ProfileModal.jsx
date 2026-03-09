@@ -1,113 +1,124 @@
 "use client";
+import { useState, useEffect } from "react";
+import { X, ShieldCheck, GraduationCap, Database, Sparkles, Zap, Loader2 } from "lucide-react";
 
-import { X, ShieldCheck, GraduationCap, Cloud, Database, Sparkles, Zap } from "lucide-react";
+export default function ProfileModal({ isOpen, onClose, user }) {
+  const [isMounted, setIsMounted] = useState(false);
 
-export default function ProfileModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-  // 🎯 HARDCODED DATA FOR PRIYA (MATCHES SCREENSHOT LOGIC)
+  if (!isOpen || !isMounted) return null;
+
+  // 🎯 THREE-TIER DATA LOGIC
+  // Fallback to demo if user prop is missing, otherwise use real cloud user
   const profileData = {
-    name: "Priya",
-    email: "priya@mu.ac.in",
-    university: "Mumbai University",
-    course: "B.E. Computer Engineering",
-    tier: "Sathi Pro Member",
-    s3Used: 1.24, // 1.24 GB
-    creditsLeft: 84 // 84 Credits left
+    name: user?.name || "Student",
+    email: user?.email || "syncing@devsathi.ai",
+    university: user?.university || "DevSathi Academy",
+    course: user?.course || "Vernacular Learning Path",
+    tier: user?.isDemo ? "Sathi Pro Member" : "Sathi Explorer",
+    s3Used: user?.isDemo ? 1.24 : (user?.vaultSize || 0.05), // Real size or tiny placeholder
+    creditsLeft: user?.aiCredits || 100
   };
 
   const getInitials = (name) => {
-    return name.charAt(0).toUpperCase();
+    return name.split(" ").map(n => n[0]).join("").toUpperCase().substring(0, 2);
   };
 
-  // Logic for Progress Bars
+  // Logic for Progress Bars (5GB S3 Cap / 1000 Credit Cap)
   const totalS3 = 5;
-  const totalCredits = 100;
-  const s3Percent = (profileData.s3Used / totalS3) * 100;
-  const creditPercent = (profileData.creditsLeft / totalCredits) * 100;
+  const totalCredits = 1000;
+  const s3Percent = Math.min((profileData.s3Used / totalS3) * 100, 100);
+  const creditPercent = Math.min((profileData.creditsLeft / totalCredits) * 100, 100);
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#020617]/80 backdrop-blur-md p-4 animate-in fade-in duration-300">
+      
       {/* Modal Container */}
-      <div className="relative w-full max-w-xl bg-[#0f172a] rounded-[2.5rem] shadow-2xl border border-slate-800 overflow-hidden text-slate-200">
+      <div className="relative w-full max-w-xl bg-[#0f172a] rounded-[2.5rem] shadow-2xl border border-slate-800 overflow-hidden text-slate-200 animate-in zoom-in-95 duration-300">
         
         {/* Close Button */}
         <button 
           onClick={onClose} 
-          className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/5 text-slate-500 z-10 transition-colors"
+          className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/5 text-slate-500 z-50 transition-colors"
         >
           <X size={20} />
         </button>
 
         {/* Top Header Banner */}
-        <div className="h-32 bg-gradient-to-r from-indigo-600 to-purple-600"></div>
+        <div className="h-32 bg-gradient-to-r from-indigo-600 to-purple-600 relative overflow-hidden">
+            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent animate-pulse"></div>
+        </div>
 
         <div className="px-8 pb-10">
           {/* Header Info Block */}
-          <div className="flex justify-between items-end -mt-12 mb-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end -mt-12 mb-8 gap-4">
             <div className="flex items-end gap-5">
               {/* Profile Initial Box */}
-              <div className="w-24 h-24 rounded-3xl bg-indigo-600 flex items-center justify-center text-white font-black text-4xl border-8 border-[#0f172a] shadow-2xl">
+              <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-black text-4xl border-8 border-[#0f172a] shadow-2xl uppercase">
                 {getInitials(profileData.name)}
               </div>
               <div className="pb-2">
-                <h2 className="text-3xl font-black text-white flex items-center gap-2 tracking-tight">
-                  {profileData.name} <ShieldCheck size={22} className="text-emerald-500" />
+                <h2 className="text-2xl font-black text-white flex items-center gap-2 tracking-tight">
+                  {profileData.name} <ShieldCheck size={20} className="text-emerald-500 shrink-0" />
                 </h2>
-                <p className="text-sm font-bold text-slate-500">{profileData.email}</p>
+                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest leading-none mt-1">{profileData.email}</p>
               </div>
             </div>
+            
             {/* Status Badge */}
-            <span className="px-4 py-2 bg-indigo-500/10 text-indigo-400 text-[10px] font-black rounded-xl border border-indigo-500/20 mb-2 uppercase tracking-[0.2em]">
+            <span className="px-4 py-2 bg-indigo-500/10 text-indigo-400 text-[9px] font-black rounded-xl border border-indigo-500/20 uppercase tracking-[0.2em] shadow-sm">
               {profileData.tier}
             </span>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* 🎓 ACADEMIC INFO PANEL */}
-            <div className="bg-[#020617] p-6 rounded-[2rem] border border-slate-800 grid grid-cols-2 gap-8">
+            <div className="bg-[#020617]/50 p-6 rounded-[2rem] border border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-1">
-                 <div className="text-[10px] text-slate-500 font-black uppercase tracking-widest flex items-center gap-2">
-                   <GraduationCap size={12} /> Institution
+                 <div className="text-[9px] text-slate-500 font-black uppercase tracking-widest flex items-center gap-2">
+                   <GraduationCap size={12} className="text-indigo-500" /> Institution
                  </div>
-                 <div className="text-md font-bold text-white">{profileData.university}</div>
+                 <div className="text-sm font-bold text-white tracking-tight">{profileData.university}</div>
               </div>
               <div className="space-y-1">
-                 <div className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Course</div>
-                 <div className="text-md font-bold text-white">{profileData.course}</div>
+                 <div className="text-[9px] text-slate-500 font-black uppercase tracking-widest">Course</div>
+                 <div className="text-sm font-bold text-white tracking-tight">{profileData.course}</div>
               </div>
             </div>
 
             {/* ☁️ CLOUD STORAGE & AI QUOTA */}
-            <div className="space-y-6 px-2">
+            <div className="space-y-6 px-1">
               
-              {/* S3 Storage Logic */}
+              {/* S3 Storage Progress */}
               <div className="space-y-3">
-                <div className="flex justify-between text-[11px] font-black uppercase tracking-widest">
-                  <span className="flex items-center gap-2 text-blue-400">
-                    <Database size={14} /> S3 Storage
+                <div className="flex justify-between text-[10px] font-black uppercase tracking-[0.15em]">
+                  <span className="flex items-center gap-2 text-indigo-400">
+                    <Database size={13} /> S3 Storage (Cloud)
                   </span>
                   <span className="text-slate-500">{profileData.s3Used} GB / {totalS3} GB</span>
                 </div>
-                <div className="w-full bg-slate-800 rounded-full h-3 overflow-hidden shadow-inner">
+                <div className="w-full bg-slate-800/50 rounded-full h-2.5 overflow-hidden p-[2px] border border-white/5">
                   <div 
-                    className="bg-blue-500 h-full transition-all duration-1000 ease-out" 
+                    className="bg-gradient-to-r from-indigo-500 to-blue-500 h-full rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(79,70,229,0.4)]" 
                     style={{ width: `${s3Percent}%` }}
                   ></div>
                 </div>
               </div>
 
-              {/* AI Credits Logic */}
+              {/* AI Credits Progress */}
               <div className="space-y-3">
-                <div className="flex justify-between text-[11px] font-black uppercase tracking-widest">
+                <div className="flex justify-between text-[10px] font-black uppercase tracking-[0.15em]">
                   <span className="flex items-center gap-2 text-purple-400">
-                    <Sparkles size={14} /> AI Spark Credits
+                    <Sparkles size={13} /> Bedrock AI Tokens
                   </span>
-                  <span className="text-slate-500">{profileData.creditsLeft} Left</span>
+                  <span className="text-slate-500">{profileData.creditsLeft} / {totalCredits}</span>
                 </div>
-                <div className="w-full bg-slate-800 rounded-full h-3 overflow-hidden shadow-inner">
+                <div className="w-full bg-slate-800/50 rounded-full h-2.5 overflow-hidden p-[2px] border border-white/5">
                   <div 
-                    className="bg-purple-500 h-full transition-all duration-1000 ease-out" 
+                    className="bg-gradient-to-r from-purple-500 to-pink-500 h-full rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(168,85,247,0.4)]" 
                     style={{ width: `${creditPercent}%` }}
                   ></div>
                 </div>
@@ -116,19 +127,19 @@ export default function ProfileModal({ isOpen, onClose }) {
             </div>
 
             {/* 🚀 ACTIVE SYNC BADGE */}
-            <div className="flex items-center justify-between p-5 rounded-[1.5rem] border border-indigo-500/20 bg-indigo-500/5 mt-4">
+            <div className="flex items-center justify-between p-5 rounded-[2rem] border border-white/5 bg-white/[0.02] mt-2 group hover:border-indigo-500/30 transition-all duration-500">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center border border-indigo-500/20 bg-[#020617]">
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center border border-indigo-500/20 bg-[#020617] group-hover:scale-110 transition-transform">
                   <Zap size={20} className="text-indigo-500 animate-pulse" />
                 </div>
                 <div>
-                  <div className="text-sm font-black text-white uppercase tracking-tighter">Active Sync</div>
-                  <div className="text-[11px] text-slate-500 font-medium tracking-tight">Vernacular Engine is live via AWS Bedrock</div>
+                  <div className="text-xs font-black text-white uppercase tracking-tighter">AWS Bedrock Node</div>
+                  <div className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">Vernacular Engine: Online</div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-lg text-[10px] font-black uppercase tracking-widest">
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 text-emerald-500 rounded-lg text-[9px] font-black uppercase tracking-widest border border-emerald-500/10">
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
-                Live
+                Syncing
               </div>
             </div>
 
